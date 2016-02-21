@@ -10,7 +10,11 @@ public class Interpreter {
 		this.tokenizer = tokenizer;
 		this.code = code;
 		this.ntf = ntf;
-		tableGen = new TableGenerator(cfgFile);
+		try {
+			tableGen = new TableGenerator(cfgFile);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		parser = new Parser(ntf);
 	}
 
