@@ -19,5 +19,10 @@ public interface Tokenizer {
 	 */
 	public void tokenize();
 
+	/**
+	 * sets the code to tokenize
+	 */
+	public void setCode(String code);
+
 	public List<Token> getTokens();
 }

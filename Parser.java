@@ -12,13 +12,20 @@ import java.util.Stack;
 
 public class Parser {
 	private List<Token> tokens;
+	private int currIndex;
+	private NonTerminalFactory ntf;
 
-	public Parser(List<Token> tokens) {
-		this.tokens = tokens;
+	public Parser(NonTerminalFactory ntf) {
+		this.ntf = ntf;
 
 	}
 
 	public NonTerminal parse() {
 		return null;
+	}
+
+	public void setTokens(List<Token> tokens) {
+		this.tokens = tokens;
+		currIndex = 0;
 	}
 }
