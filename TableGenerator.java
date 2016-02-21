@@ -6,6 +6,7 @@ public class TableGenerator {
 	public static TableGenerator instance;
 	private HashMap<String,ArrayList<Production>> prods;
 	private HashMap<String,ArrayList<String>> firsts;
+	private ArrayList<Production> productionList;
 	private ArrayList<String> variables;
 	private ArrayList<String> terminals;
 	private ArrayList<State> states;
@@ -24,6 +25,7 @@ public class TableGenerator {
 		prods = new HashMap<String,ArrayList<Production>>();
 		firsts = new HashMap<String,ArrayList<String>>();
 		variables = new ArrayList<String>();
+		productionList = new ArrayList<Production>();
 		terminals = new ArrayList<String>();
 		states = new ArrayList<State>();
 		extractProductions(cfgFile);
@@ -56,7 +58,9 @@ public class TableGenerator {
 							started = true;
 						}
 					}
-					temp.add(new Production(left,production));
+					Production pro = new Production(left,production);
+					temp.add(pro);
+					productionList.add(pro);
 				}
 			} else {
 				break;
@@ -277,25 +281,107 @@ public class TableGenerator {
 								new BufferedWriter(
 									new FileWriter(
 										new File("CFG.csv"))));
+			terminals.add(EOF);
 			for(String term: terminals ) {
-				pw.print("," + term);
+				pw.print("," + (term.equals(",") ? "\",\"" : term));
+			}
+			for(String var: variables ) {
+				pw.print("," + var);
 			}
 			pw.println();
 
+			
 			for(State state: states) {
-				String[] actions = new String[terminals.length];
-				pw.print(state.id())
-				for(int i = 0; i < terminals.length; i++) {
+				boolean error = false;
+				boolean printedState = false;
+				
+				// System.out.println(state);
+				String[] actions = new String[terminals.size()];
+				pw.print(state.id());
+				for(int i = 0; i < terminals.size(); i++) {
 					String term = terminals.get(i);
 					State action = state.transition(term);
 					if( action != null ) {
-						actions[("SHIFT " + action.id());
+						actions[i] = ("SHIFT " + action.id());
 					}
 				}
+
+				for(int i = 0; i < state.size(); i++) {
+					Item currItem = state.item(i);
+					if(currItem.isReduction()) {
+						String[] lookahead = currItem.lookahead();
+						for(String look: lookahead ) {
+							int theIndex = terminals.indexOf(look);
+							String theAction = actions[theIndex];
+							if( theAction != null ) {
+								if( theAction.startsWith("SHIFT") ) {
+									if( !printedState ) {
+										System.out.println(state);
+										printedState = true;
+									}
+									System.out.println("SR Conflict at terminal " 
+														+ look + " and production " 
+														+ currItem.prodString());
+									error = true;
+								} else {
+									if( !printedState ) {
+										System.out.println(state);
+										printedState = true;
+									}
+									
+									if( theAction.equals("ACCEPT")) {
+										System.out.println("AR conflict with " 
+													+ currItem.prodString());
+										error = true;
+									} else {
+										Production conflict = productionList
+											.get(Integer.parseInt(theAction
+														.split(" ")[1]) );
+										if( currItem.prodId() 
+												!= conflict.id() ) {
+											System.out.println("RR Conflict " 
+																+ "with " 
+																+ currItem
+																.prodString() 
+																+ " and " 
+																+ conflict);
+											error = true;
+										}
+									}
+								}
+							} else if( currItem.prodId() == -1) {
+								actions[theIndex] = "ACCEPT";
+							} else {
+								actions[theIndex] = "REDUCE " 
+													+ currItem.prodId();
+							}
+						}
+					}
+				}
+				for(String action: actions) {
+					pw.print("," + (action == null ? "" : action));
+				}
+
+				String[] gotos = new String[variables.size()];
+				for(int i = 0; i < variables.size(); i++) {
+					String var = variables.get(i);
+					State action = state.transition(var);
+					if( action != null ) {
+						gotos[i] = "GOTO " + action.id();
+					}
+				}
+
+				for(String gt: gotos) {
+					pw.print("," + (gt == null ? "" : gt));
+				}
+				pw.println();
+				if( error ) {
+					System.out.println();
+				}
 			}
-			for(String terminal: terminals) {
-				System.out.println(terminal);
-			}
+			// for(String terminal: terminals) {
+			// 	System.out.println(terminal);
+			// }
 
 			pw.close();
 		} catch(Exception e) {

@@ -41,6 +41,10 @@ public class Item {
 		return production.production();
 	}
 
+	public String prodString() {
+		return production.toString();
+	}
+
 	public String variable() {
 		return production.variable();
 	}

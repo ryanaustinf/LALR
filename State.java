@@ -20,6 +20,10 @@ public class State {
 		id = STATE_ID;
 		STATE_ID++;
 	}
+
+	public int id() {
+		return id;
+	}
 		
 	private void generateItems(Item[] items) {
 		TableGenerator tg = TableGenerator.instance;

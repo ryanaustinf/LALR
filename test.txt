@@ -5,6 +5,18 @@
 
 //A var
 //A,2 A
-//A,
-E,E + E
-E,id
+//A,2
+//E,E + E
+//E,id
+
+E,E addsub T
+E,T
+T,T muldiv F
+T,F
+T,( E )
+addsub,+
+addsub,-
+muldiv,*
+muldiv,/
+F,id
+F,E

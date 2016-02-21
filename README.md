@@ -18,6 +18,9 @@ is not okay
 
 Do not put unnecessary whitespace or tabs in the grammar.
 Do not use the variable "START"
+Do not use the terminal "EOF"
+replace all commas with &com;
+replace all quotes with &quot;
 
 e.g.
 For the grammar 

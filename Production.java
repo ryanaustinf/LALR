@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Production {
-	private static int PROD_ID = 0;
+	private static int PROD_ID = -1;
 	private int id;
 	private String variable;
 	private String production;
