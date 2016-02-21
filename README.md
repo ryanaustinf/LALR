@@ -3,23 +3,41 @@
 LHS,RHS1 RHS2 RHS3 
 where LHS is the left hand side and RHSi is parts of the production
 for all productions with the first production's LHS being the start symbol.
+All left hand sides must be in all uppercase and all references to variables
+must be consistent e.g.
+
+	VAR1 -> VAR2
+	VAR2 -> 0
+
+is okay but
+
+	VAR1 -> Var2
+	VAR2 -> 0 
+
+is not okay
+
+Do not put unnecessary whitespace or tabs in the grammar.
+Do not use the variable "START"
+
 e.g.
 For the grammar 
-G = ({S,A},{0,1},P,S)
-P given by
-S -> 0S1 | 0A1
-A -> 1A | epsilon
+
+	G = ({S,A},{0,1},P,S)
+	P given by
+	S -> 0S1 | 0A1
+	A -> 1A | epsilon
 
 the file would look like
-//you could put comments at the start of a line like this
 
-//this is S
-S,0 S 1
-S,0 A 1
+	//you could put comments at the start of a line like this
 
-//this is A
-A,1 A
-A,
+	//this is S
+	S,0 S 1
+	S,0 A 1
+
+	//this is A
+	A,1 A
+	A,
 
 LEXICAL ANALYSIS
 3. Create a concrete subclass implementation of Tokenizer. Refer to Tokenizer's 

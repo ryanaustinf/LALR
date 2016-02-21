@@ -1,15 +1,4 @@
-public abstract class NonTerminalFactory {
-	private static NonTerminalFactory instance = null;
-
-	private NonTerminalFactory() {}
-
-	public static NonTerminalFactory instance() {
-		if(instance == null ) {
-			instance = new NonTerminalFactory();
-		}
-        return instance;
-	}
-
+public interface NonTerminalFactory {
 	/**
 	 *		Create cases for each nonterminal, returning a new subclass of 
 	 *		NonTerminal
@@ -33,5 +22,5 @@ public abstract class NonTerminalFactory {
 	 *				return null;
 	 *		}
 	 */
-	public abstract NonTerminal getNonTerminal(String type, String pattern);
+	public NonTerminal getNonTerminal(String type, String pattern);
 }
