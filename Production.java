@@ -42,6 +42,17 @@ public class Production {
 		return parts[index];
 	}
 
+	public String remains(int index) {
+		String ret = "";
+		for(int i = index; i < size(); i++) {
+			if( i > index ) {
+				ret += " ";
+			}
+			ret += part(i);
+		}
+		return ret;
+	}
+
 	public int size() {
 		return parts.length;
 	}

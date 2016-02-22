@@ -12,10 +12,11 @@ public class Interpreter {
 		this.ntf = ntf;
 		try {
 			tableGen = new TableGenerator(cfgFile);
+			tableGen.generateParseTable();
+			parser = new Parser(ntf);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		parser = new Parser(ntf);
 	}
 
 	public void interpret() {

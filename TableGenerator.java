@@ -239,8 +239,7 @@ public class TableGenerator {
 
 				return first.toArray(new String[0]);
 			}
-		}
-		
+		}	
 	}
 
 	public State addState(State s) {

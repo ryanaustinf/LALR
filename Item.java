@@ -70,14 +70,7 @@ public class Item {
 	}
 
 	public String remains() {
-		String ret = "";
-		for(int i = position + 1; i < size(); i++) {
-			if( i > position + 1 ) {
-				ret += " ";
-			}
-			ret += production.part(i);
-		}
-		return ret;
+		return production.remains(position + 1);
 	}
 
 	public Item moveForward() {

@@ -9,14 +9,39 @@
 //E,E + E
 //E,id
 
-E,E addsub T
+// E,E addsub T
+// E,T
+// T,T muldiv F
+// T,F
+// addsub,+
+// addsub,-
+// muldiv,*
+// muldiv,/
+// F,id
+// F,( E )
+
+// E,E + id
+// E,E * id
+// E,id
+
+A,var = A
+A,var = B
+B,! B
+B,C
+C,C < D
+C,C > D
+C,C <= D
+C,C >= D
+C,D
+D,D == E
+D,D != E
+D,E
+E,E + T
+E,E - T
 E,T
-T,T muldiv F
+T,T * F
+T,T / F
+T,T % F
 T,F
-T,( E )
-addsub,+
-addsub,-
-muldiv,*
-muldiv,/
-F,id
-F,E
+F,num
+F,( E )
