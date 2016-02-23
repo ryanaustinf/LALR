@@ -1,6 +1,8 @@
 1. Make sure your CFG is complete.
 2. Write your CFG in a file following the format
-LHS,RHS1 RHS2 RHS3 
+
+	LHS,RHS1 RHS2 RHS3 
+
 where LHS is the left hand side and RHSi is parts of the production
 for all productions with the first production's LHS being the start symbol.
 All left hand sides must be in all uppercase and all references to variables
@@ -46,13 +48,8 @@ LEXICAL ANALYSIS
 3. Create a concrete subclass implementation of Tokenizer. Refer to Tokenizer's 
 implementation
 
-SYNTACTICAL ANALYSIS
-4. run TableGenerator using "java -jar TableGenerator.jar <CFG filename>"
-	-fix any errors that pop up. If SR or RR conflicts pop up, double check 
-		your grammar
-
 SYNTAX DIRECTED TRANSLATION
-5. Implement all the NonTerminals as a subclass of NonTerminal. This means 
+4. Implement all the NonTerminals as a subclass of NonTerminal. This means 
 	implement execute() and interpret()
 	Essentially, use getComponent() to get the necessary tokens or NonTerminals
 	e.g.
@@ -78,7 +75,9 @@ SYNTAX DIRECTED TRANSLATION
 
 	also, check the interpret() method of Token if there's any special type 
 	tokens in your language
+5. Implement the NonTerminalFactory Interface by returning the approproate class 
+	for each NonTerminal you made in step 4.
 
-6. Instantiate Interpreter, set the Tokenizer using setTokenizer(Tokenizer), 
-	and set code using setCode(filename : String).
+6. Instantiate Interpreter in the Driver with the Tokenizer using setTokenizer(Tokenizer), 
+	NonTerminalFactory, cfg file, and code.
 7.  Run the Driver by java Driver <filename> and see your code run.
