@@ -33,7 +33,52 @@ public class Token implements ParseObject {
 
 	public void interpret() throws Exception {
 		switch(type) {
-			//feel free to write code here
+			case "pitch":
+				switch(token.charAt(0)) {
+					case 'C':
+						value = 0;
+						break;
+					case 'D':
+						value = 2;
+						break;
+					case 'E':
+						value = 4;
+						break;
+					case 'F':
+						value = 5;
+						break;
+					case 'G':
+						value = 7;
+						break;
+					case 'A':
+						value = 9;
+						break;
+					case 'B':
+						value = 11;
+						break;
+					default:
+						value = 0;
+				}
+				for(int i = 1; i < token.length(); i++ ) {
+					switch(token.charAt(i)) {
+						case '#':
+							value++;
+							break;
+						case 'b':
+							value--;
+							break;
+						default:
+					}
+				}
+				break;
+			case "num":
+				value = Integer.parseInt(token);
+				break;
+			case "time":
+				String[] parts = token.split("/");
+				time = Double.parseDouble(parts[0]) * 1.0 
+						/ Double.parseDouble(parts[1]);
+				break;
 			default:
 		}
 	}

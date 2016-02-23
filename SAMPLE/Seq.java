@@ -45,6 +45,8 @@ public class Seq extends NonTerminal implements Playable {
 	}
 
 	public void execute() {
+		System.out.println("Playing");
+		
 		play();
 	}
 
@@ -74,7 +76,6 @@ public class Seq extends NonTerminal implements Playable {
 
 	public void play() {
 		for(NoteAction na: stream) {
-    		// System.out.println(na);
     		MusicPlayer.instance().play(na);
     	}
 	}

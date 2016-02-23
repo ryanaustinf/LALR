@@ -54,7 +54,7 @@ public class Var extends NonTerminal implements Playable
                         indices = new int[] { num.intValue() };
                     }
                 } else {
-                    indices = new int[] {};
+                    indices = null;
                 }
 
                 if(indices != null)
@@ -80,6 +80,11 @@ public class Var extends NonTerminal implements Playable
                                     curIndex++;
                                 }
                                 for(i = 0; i < lengthSync; ) {
+                                    if( curIndex >= originalSync.length ) {
+                                        System.out.println("Index out of bounds" 
+                                                            + " at line " 
+                                                            + num.lineNo());
+                                    }
                                     String type = originalSync[curIndex].getType();
                                     if( !type.equals("VOLUME") && !type.equals("TEMPO")) {
                                         newSyncPlayables[i] = originalSync[curIndex];
@@ -108,6 +113,11 @@ public class Var extends NonTerminal implements Playable
                                     curIndex++;
                                 }
                                 for(i = 0; i < lengthSeq; ) {
+                                    if( curIndex >= originalSeq.length ) {
+                                        System.out.println("Index out of bounds" 
+                                                            + " at line " 
+                                                            + num.lineNo());
+                                    }
                                     String type = originalSeq[curIndex].getType();
                                     if( !type.equals("VOLUME") && !type.equals("TEMPO")) {
                                         newSeqPlayables[i] = originalSeq[curIndex];

@@ -1,5 +1,5 @@
 PROG,PLAY newline
-PROG,ELEMS newline PLAY newline ELEMSR
+PROG,ELEMS PLAY newline ELEMSR
 PROG,ELEMS newline PLAY newline
 PROG,PLAY newline ELEMS
 ELEMSR,ELEMS

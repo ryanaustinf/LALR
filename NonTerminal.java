@@ -6,7 +6,7 @@ import java.util.HashMap;
  */
 public abstract class NonTerminal implements ParseObject {
 	private HashMap<String,ParseObject> components;
-	private String type;
+	protected String type;
 	private String[] production;
 	private int setCtr;
 

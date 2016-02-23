@@ -24,13 +24,16 @@ public class Interpreter {
 		}
 	}
 
-	public void interpret() {
+	public void interpret() throws Exception {
 		tokenizer.setCode(code);
 		tokenizer.tokenize();
 		parser.setTokens(tokenizer.getTokens());
 		NonTerminal start = parser.parse();
 		if( start != null ) {
+			System.out.println("EXECUTING");
 			start.execute();
+		} else {
+			System.out.println("Program terminated without execution.");
 		}
 	}
 }

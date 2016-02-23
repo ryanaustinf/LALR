@@ -92,6 +92,17 @@ public class Elem2 extends NonTerminal implements Playable {
 		}
 	}
 
+	public Playable[] getPlayables() {
+		switch(getType()) {
+			case "SYNC":
+				return ((Sync)play).getPlayables();
+			case "SEQ":
+				return ((Seq)play).getPlayables();
+			default:
+				return null;
+		}
+	}
+
 	public void execute() {
 		play();
 	}

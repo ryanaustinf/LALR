@@ -30,6 +30,7 @@ public class Interpreter {
 		parser.setTokens(tokenizer.getTokens());
 		NonTerminal start = parser.parse();
 		if( start != null ) {
+			System.out.println("EXECUTING");
 			start.execute();
 		} else {
 			System.out.println("Program terminated without execution.");

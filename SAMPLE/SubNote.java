@@ -20,7 +20,6 @@ public class SubNote extends NonTerminal {
 				oct.interpret();
 				octave = oct.getOctave();
 			}
-
 			Time tm = (Time)getComponent("TIME");
 			tm.interpret();
 			time = tm.getTime();

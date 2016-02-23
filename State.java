@@ -40,11 +40,13 @@ public class State {
 		for(Item i : items) {
 			frontier.add(i);
 		}
-
 		while(frontier.size() > 0) {
 			Item i = frontier.get(0);
 			boolean isFound = false;
 			for(Item item:lr1) {
+				// if( i.prodId() == 30 && i.position() == 0 && item.prodId() == 30 && item.position() == 0) {
+				// 	System.out.println("COMPARING " + item + "\t" + i + "\t" + item.equals(i));
+				// }
 				if(item.equals(i)) {
 					isFound = true;
 					break;
@@ -101,7 +103,7 @@ public class State {
 												+ currItem.prodString());
 							error = true;
 						} else {
-							if( theAction.equals("ACCEPT")) {
+							if( theAction.type().equals("ACCEPT")) {
 								System.out.println("AR conflict with " 
 											+ currItem.prodString());
 								error = true;
@@ -184,6 +186,7 @@ public class State {
 				Item item = items[i];
 				if( !item.isReduction()) {
 					String curr = item.currPart();
+					
 					if(transKeys.indexOf(curr) == -1) {
 						transKeys.add(curr);
 						ArrayList<Item> newItems = new ArrayList<Item>();
@@ -239,7 +242,7 @@ public class State {
 				}
 			}
 		}
-		return count == size();
+		return count == size() && count == s.size();
 	}
 
 	public String toString() {

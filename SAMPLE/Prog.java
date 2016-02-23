@@ -30,7 +30,7 @@ public class Prog extends NonTerminal {
 	}
 
 	public void execute() {
-		play.play();
+		play.execute();
 	}
 }
 

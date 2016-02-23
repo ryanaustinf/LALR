@@ -31,7 +31,7 @@ public class Parser {
 
 			if( act == null ) {
 				System.out.println("Error: Unexpected token " + currToken);
-				System.out.println(topState);
+				// System.out.println(topState);
 				printStack();
 				while(!topState.hasFollow()) {
 					topState = states.pop();
@@ -100,9 +100,9 @@ public class Parser {
 				return (NonTerminal)top;
 			} catch(Exception e) {
 				// if( e.getMessage() == null) {
-					// e.printStackTrace();
+					e.printStackTrace();
 				// } else {
-					System.out.println(e.getMessage());
+					// System.out.println(e.getMessage());
 				// }
 				return null;
 			}
