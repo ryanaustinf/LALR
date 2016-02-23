@@ -3,19 +3,24 @@ public class Interpreter {
 	private Parser parser;
 	private TableGenerator tableGen;
 	private NonTerminalFactory ntf;
+	private State[] parseTable;
 	private String code;
 
 	public Interpreter(Tokenizer tokenizer,NonTerminalFactory ntf, String code
-						,String cfgFile) {
+						,String cfgFile) throws Exception {
 		this.tokenizer = tokenizer;
 		this.code = code;
 		this.ntf = ntf;
 		try {
 			tableGen = new TableGenerator(cfgFile);
-			tableGen.generateParseTable();
-			parser = new Parser(ntf);
+			parseTable = tableGen.generateParseTable();
+			parser = new Parser(ntf,parseTable);
+			if( parseTable == null ) {
+				throw new Exception("Cannot interpret due to conflicts in " 
+									+ "grammar");
+			}
 		} catch(Exception e) {
-			e.printStackTrace();
+			throw e;
 		}
 	}
 

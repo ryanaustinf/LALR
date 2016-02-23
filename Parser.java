@@ -14,10 +14,11 @@ public class Parser {
 	private List<Token> tokens;
 	private int currIndex;
 	private NonTerminalFactory ntf;
+	private State[] parseTable;
 
-	public Parser(NonTerminalFactory ntf) {
+	public Parser(NonTerminalFactory ntf, State[] parseTable) {
 		this.ntf = ntf;
-
+		this.parseTable = parseTable;
 	}
 
 	public NonTerminal parse() {

@@ -6,10 +6,12 @@ public class TableGenerator {
 	public static TableGenerator instance;
 	private HashMap<String,ArrayList<Production>> prods;
 	private HashMap<String,ArrayList<String>> firsts;
+	private HashMap<String,ArrayList<String>> follows;
 	private ArrayList<Production> productionList;
 	private ArrayList<String> variables;
 	private ArrayList<String> terminals;
 	private ArrayList<State> states;
+	private ArrayList<Action> shifts;
 	public static final String EOF = "EOF";
 
 	public static void main(String[] args) {
@@ -24,10 +26,12 @@ public class TableGenerator {
 	public TableGenerator(String cfgFile) throws Exception {
 		prods = new HashMap<String,ArrayList<Production>>();
 		firsts = new HashMap<String,ArrayList<String>>();
+		follows = new HashMap<String,ArrayList<String>>();
 		variables = new ArrayList<String>();
 		productionList = new ArrayList<Production>();
 		terminals = new ArrayList<String>();
 		states = new ArrayList<State>();
+		shifts = new ArrayList<Action>();
 		extractProductions(cfgFile);
 		instance = this;
 	}
@@ -46,12 +50,15 @@ public class TableGenerator {
 				if( curr.length() > 0 && !curr.startsWith("//") ) {
 					int comma = curr.indexOf(",");
 					String left = curr.substring(0,comma);
-					String production = curr.substring(comma + 1);
+					String production = curr.substring(comma + 1)
+											.replaceAll("&com;",",")
+											.replaceAll("&quot;","\"");
 					ArrayList<Production> temp = prods.get(left);
 					if( temp == null ) {
 						temp = new ArrayList<Production>();
 						prods.put(left,temp);
 						firsts.put(left,new ArrayList<String>());
+						follows.put(left,new ArrayList<String>());
 						variables.add(left);
 						if( !started ) {
 							start.add(new Production("START",left));
@@ -68,6 +75,7 @@ public class TableGenerator {
 		} while(true);
 		br.close();
 		computeFirsts();
+		computeFollows();
 	}
 
 	public boolean isVariable(String var) {
@@ -242,6 +250,108 @@ public class TableGenerator {
 		}	
 	}
 
+	public int terminalCount() {
+		return terminals.size();
+	}
+
+	public int variableCount() {
+		return variables.size();
+	}
+
+	private void addFollow(String var, String follow) {
+		ArrayList<String> followArr = follows.get(var);
+		if( followArr.indexOf(follow) == -1) {
+			followArr.add(follow);
+		}
+	}
+
+	public Action getShift(State s) {
+		for( Action a: shifts) {
+			if( a.shift().id() == s.id() ) {
+				return a;
+			}
+		}
+		Action a = new Action(s);
+		shifts.add(a);
+		return a;
+	}
+
+	public void computeFollows() {
+		HashMap<String,ArrayList<Production>> processQueue 
+			= new HashMap<String,ArrayList<Production>>();
+		HashMap<String,ArrayList<String>> listenQueue
+			= new HashMap<String,ArrayList<String>>();
+		ArrayList<String> nullables = new ArrayList<String>();
+		for(String s: variables) {
+			ArrayList<Production> newList = new ArrayList<Production>();
+			ArrayList<String> listen = new ArrayList<String>();
+			processQueue.put(s,newList);
+			listenQueue.put(s,listen);
+		}
+
+		follows.get(variables.get(0)).add("EOF");
+
+		for(Production p : productionList) {
+			for(int i = 0; i < p.size(); i++ ) {
+				if( isVariable(p.part(i)) ) {
+					processQueue.get(p.part(i)).add(p);
+				}
+			}
+		}
+		for(String s : variables) {
+			ArrayList<Production> process = processQueue.get(s);
+			ArrayList<String> listen = listenQueue.get(s);
+			//for each production, search variable
+			for(Production p: process) {
+				for(int i = 0; i < p.size(); i++) {
+					if( p.part(i).equals(s)) {
+						String[] follow = first(p.remains(i + 1));
+						//add non-empty
+						for(String fol: follow) {
+							if( fol.length() > 0 ) {
+								addFollow(s,fol);
+								for(String var : listen) {
+									addFollow(var,fol);
+								}
+							} else {
+								listenQueue.get(p.variable()).add(s);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		for(String s : variables) {
+			ArrayList<String> listen = listenQueue.get(s);
+			ArrayList<String> follow = follows.get(s);
+
+			for(String lis: listen) {
+				for(String fol: follow) {
+					addFollow(lis,fol);
+				}
+			}
+		}
+
+		// for(String s: variables) {
+		// 	ArrayList<String> follow = follows.get(s);
+
+		// 	System.out.print(s + " -> ");
+		// 	for(String fol: follow) {
+		// 		System.out.print(fol + ", ");
+		// 	}			
+		// 	System.out.println();
+		// }
+	}
+
+	public String[] follow(String variable) {
+		if( isVariable(variable) ) {
+			return follows.get(variable).toArray(new String[1]);
+		} else {
+			return new String[0];
+		}
+	}
+
 	public State addState(State s) {
 		for(State curr : states) {
 			if( curr.equals(s)) {
@@ -259,10 +369,10 @@ public class TableGenerator {
 		}
 	}
 
-	public void generateParseTable() {
+	public State[] generateParseTable() {
 		ArrayList<State> frontier = new ArrayList<State>();
 		Production start = prods.get("START").get(0);
-		State s = new State(new Item[]{new Item(start,new String[]{EOF})});
+		State s = new State(new Item[]{new Item(start,new String[]{EOF})},this);
 		s.validate();
 		frontier.add(s);
 		states.add(s);
@@ -289,102 +399,46 @@ public class TableGenerator {
 			}
 			pw.println();
 
-			
+			boolean globalErr = false;
 			for(State state: states) {
-				boolean error = false;
-				boolean printedState = false;
-				
-				// System.out.println(state);
-				String[] actions = new String[terminals.size()];
 				pw.print(state.id());
-				for(int i = 0; i < terminals.size(); i++) {
-					String term = terminals.get(i);
-					State action = state.transition(term);
-					if( action != null ) {
-						actions[i] = ("SHIFT " + action.id());
-					}
-				}
-
-				for(int i = 0; i < state.size(); i++) {
-					Item currItem = state.item(i);
-					if(currItem.isReduction()) {
-						String[] lookahead = currItem.lookahead();
-						for(String look: lookahead ) {
-							int theIndex = terminals.indexOf(look);
-							String theAction = actions[theIndex];
-							if( theAction != null ) {
-								if( theAction.startsWith("SHIFT") ) {
-									if( !printedState ) {
-										System.out.println(state);
-										printedState = true;
-									}
-									System.out.println("SR Conflict at terminal " 
-														+ look + " and production " 
-														+ currItem.prodString());
-									error = true;
-								} else {
-									if( !printedState ) {
-										System.out.println(state);
-										printedState = true;
-									}
-									
-									if( theAction.equals("ACCEPT")) {
-										System.out.println("AR conflict with " 
-													+ currItem.prodString());
-										error = true;
-									} else {
-										Production conflict = productionList
-											.get(Integer.parseInt(theAction
-														.split(" ")[1]) );
-										if( currItem.prodId() 
-												!= conflict.id() ) {
-											System.out.println("RR Conflict " 
-																+ "with " 
-																+ currItem
-																.prodString() 
-																+ " and " 
-																+ conflict);
-											error = true;
-										}
-									}
-								}
-							} else if( currItem.prodId() == -1) {
-								actions[theIndex] = "ACCEPT";
-							} else {
-								actions[theIndex] = "REDUCE " 
-													+ currItem.prodId();
-							}
-						}
-					}
-				}
-				for(String action: actions) {
+				boolean error = state.generateReductions();
+		
+				for(String terminal: terminals) {
+					Action action = state.getAction(terminal);
 					pw.print("," + (action == null ? "" : action));
 				}
 
-				String[] gotos = new String[variables.size()];
-				for(int i = 0; i < variables.size(); i++) {
-					String var = variables.get(i);
-					State action = state.transition(var);
-					if( action != null ) {
-						gotos[i] = "GOTO " + action.id();
-					}
-				}
-
-				for(String gt: gotos) {
+				for(String var: variables) {
+					Integer gt = state.getGoto(var);
 					pw.print("," + (gt == null ? "" : gt));
 				}
 				pw.println();
 				if( error ) {
+					globalErr = true;
 					System.out.println();
 				}
+				// if( state.hasFollow() ) {
+				// 	System.out.println("State " + state.id() + " RECOVERY");
+				// 	for(String terminal: terminals) {
+				// 		if( state.getRecovery(terminal) != null ) {
+				// 			System.out.print(terminal + "->" 
+				// 								+ state.getRecovery(terminal)+ " ");
+				// 		}
+				// 	}
+				// 	System.out.println();
+				// }
 			}
-			// for(String terminal: terminals) {
-			// 	System.out.println(terminal);
-			// }
 
 			pw.close();
+			if( !globalErr ) {
+				return states.toArray(new State[1]);
+			} else {
+				return null;
+			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 }

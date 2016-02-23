@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class State {
 	private static int STATE_ID = 0;
@@ -8,11 +9,19 @@ public class State {
 	private ArrayList<String> transKeys;
 	private HashMap<String,State> transition;
 	private boolean isExpanded;
+	private HashMap<String,Action> actions;
+	private HashMap<String,Integer> gotoTable;
+	private HashMap<String,String> follows;
+	private TableGenerator tg;
 
-	public State(Item[] items) {
+	public State(Item[] items,TableGenerator tg) {
+		this.tg = tg;
 		generateItems(items);
 		transKeys = new ArrayList<String>();
 		transition = new HashMap<String,State>();
+		actions = new HashMap<String,Action>();
+		gotoTable = new HashMap<String,Integer>();
+		follows = new HashMap<String,String>();
 		isExpanded = false;
 	}
 
@@ -26,8 +35,6 @@ public class State {
 	}
 		
 	private void generateItems(Item[] items) {
-		TableGenerator tg = TableGenerator.instance;
-
 		ArrayList<Item> lr1 = new ArrayList<Item>();
 		ArrayList<Item> frontier = new ArrayList<Item>();
 		for(Item i : items) {
@@ -65,12 +72,113 @@ public class State {
 		this.items = lr1.toArray(new Item[0]);
 	}
 
+	public Action getAction(String key) {
+		return actions.get(key);
+	}
+
+	public Integer getGoto(String key) {
+		return gotoTable.get(key);
+	}
+
+	public boolean generateReductions() {
+		boolean error = false;
+		boolean printedState = false;
+		
+		for(int i = 0; i < size(); i++) {
+			Item currItem = item(i);
+			if(currItem.isReduction()) {
+				String[] lookahead = currItem.lookahead();
+				for(String look: lookahead ) {
+					Action theAction = actions.get(look);
+					if( theAction != null ) {
+						if( !printedState ) {
+							System.out.println(this);
+							printedState = true;
+						}
+						if( theAction.type().equals("SHIFT") ) {
+							System.out.println("SR Conflict at terminal " 
+												+ look + " and production " 
+												+ currItem.prodString());
+							error = true;
+						} else {
+							if( theAction.equals("ACCEPT")) {
+								System.out.println("AR conflict with " 
+											+ currItem.prodString());
+								error = true;
+							} else {
+								Production conflict = theAction.reduction();
+								if( currItem.prodId() 
+										!= conflict.id() ) {
+									System.out.println("RR Conflict " 
+														+ "with " 
+														+ currItem
+														.prodString() 
+														+ " and " 
+														+ conflict);
+									error = true;
+								}
+							}
+						}
+					} else if( currItem.prodId() == -1) {
+						actions.put(look,new Action());
+					} else {
+						actions.put(look
+									,new Action(currItem.productionObject()));
+					}
+				}
+			}
+		}
+		return error;
+	}
+
+	public void putAction(String key,State s) {
+		if( tg.isVariable(key) ) {
+			gotoTable.put(key,s.id());
+		} else {
+			actions.put(key,tg.getShift(s));
+		}
+	}
+
+	public void putGoto(String key, State gotoState) {
+		if( gotoTable.get(key) != null ) {
+			updateGoto(gotoTable.get(key),gotoState);
+		}
+		addFollow(key);
+	}
+
+	public void updateGoto(int prev,State newVal) {
+		Iterator<String> itr = gotoTable.keySet().iterator();
+		while(itr.hasNext()) {
+			String s = itr.next();
+			if( gotoTable.get(s).intValue() == prev) {
+				gotoTable.put(s,newVal.id());
+			}
+		}
+	}
+
+	public String getRecovery(String token) {
+		return follows.get(token);
+	} 
+
+	private void addFollow(String var) {
+		if( tg.isVariable(var) ) {
+			String[] follows = tg.follow(var);
+			for(String f: follows) {
+				if( this.follows.get(f) == null) {
+					this.follows.put(f,var);
+				}
+			}
+		}
+	}
+
+	public boolean hasFollow() {
+		return follows.size() > 0;
+	}
+
 	public State[] expand() {
 		if( isExpanded ) {
 			return new State[0];
 		} else {
-			TableGenerator tg = TableGenerator.instance;
-
 			ArrayList<State> states = new ArrayList<State>();
 			for(int i = 0; i < items.length; i++) {
 				Item item = items[i];
@@ -86,10 +194,17 @@ public class State {
 								newItems.add(items[j].moveForward());
 							}
 						}
-						State newState = new State(newItems.toArray(new Item[0]));
+						State newState = new State(newItems.toArray(new Item[0])
+													,tg);
 						newState = tg.addState(newState);
 						states.add(newState);
 						transition.put(curr,newState);
+						if( tg.isVariable(curr)) {
+							gotoTable.put(curr,newState.id());
+							addFollow(curr);
+						} else {
+							actions.put(curr,tg.getShift(newState));
+						}
 					}
 				}
 			}
