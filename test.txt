@@ -24,24 +24,26 @@
 // E,E * id
 // E,id
 
-A,var = A
-A,var = B
-B,! B
-B,C
-C,C < D
-C,C > D
-C,C <= D
-C,C >= D
-C,D
-D,D == E
-D,D != E
-D,E
-E,E + T
-E,E - T
-E,T
-T,T * F
-T,T / F
-T,T % F
-T,F
-F,num
-F,( B )
+// A,var = A
+// A,var = B
+// B,! B
+// B,C
+// C,C < D
+// C,C > D
+// C,C <= D
+// C,C >= D
+// C,D
+// D,D == E
+// D,D != E
+// D,E
+// E,E + T
+// E,E - T
+// E,T
+// T,T * F
+// T,T / F
+// T,T % F
+// T,F
+// F,num
+// F,( B )
+S,0 S 1
+S,
