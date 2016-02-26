@@ -1,0 +1,112 @@
+main,main_func
+main,code main_func
+main,main_func code
+main,code main_func code
+main_func,TARDIS ( ) { code }
+
+code,code_line code
+code,code_line
+code_line,safe_code_line
+code_line,if_stmt
+safe_code_line,declaration ;
+safe_code_line,assignment ;
+safe_code_line,switch_stmt
+safe_code_line,loop
+
+//int, float, char, string, boolean, array
+type,rose
+type,martha
+type,donna
+type,amy
+type,clara
+type,jo
+
+declaration,type var_list
+var_list,varname &com var_list
+var_list,assignment &com var_list
+var_list,varname
+var_list,assignment
+
+assignment,varname = assignment
+assignment,varname = cond
+assignment,varname = expr
+assignment,varname = string
+assignment,varname = array
+assign_list,assignment &com; assign_list
+assign_list,assignment
+
+array,[ array_vals ]
+array,Array [ type ] ( expr )
+array_vals,
+array_vals,cond array_vals
+array_vals,expr array_vals
+array_vals,string array_vals
+array_vals,array array_vals
+
+value,int
+value,float
+value,char
+
+cond,cond || cond2
+cond,cond2
+cond2,cond2 && cond3
+cond2,cond3
+cond3,! cond3
+cond3,cond4
+cond4,expr <= expr
+cond4,expr >= expr
+cond4,expr < expr
+cond4,expr > expr
+cond4,cond5
+cond5,expr == expr
+cond5,expr != expr
+cond5,bool_value
+cond5,( cond )
+
+expr,expr + expr2
+expr,expr - expr2
+expr,expr2
+expr2,expr2 * expr3
+expr2,expr2 / expr3
+expr2,expr2 % expr3
+expr2,expr3
+expr3,expr4 ^ expr3
+expr3,expr4
+//check if not string or boolean
+expr4,( assignment )
+expr4,( expr )
+expr4,value
+expr4,varname
+expr4,++ varname
+expr4,-- varname
+expr4,varname ++
+expr4,varname --
+
+code_body,safe_code_line
+code_body,{ code }
+if_stmt,dontblink ( cond ) code_body
+if_stmt,dontblink ( cond ) code_body blinkandyouredead code_body
+unless_stmt,dontevenblink ( cond ) code_body
+unless_stmt,dontevenblink ( cond ) code_body blinkandyouredead code_body
+switch_stmt,exterminate ( cond ) { switch_body }
+switch_stmt,exterminate ( expr ) { switch_body }
+switch_body,case_body switch_body
+switch_body,default_body
+case_body,master value : code
+case_body,master string : code
+case_body,master bool_value : code
+default_body,rani : code
+
+loop,for_loop
+loop,while_loop
+loop,do_while_loop
+loop,until_loop
+loop,repeat_until_loop
+for_loop,tombaker ( assign_list ; cond ; assignment ) code_body
+for_loop,tombaker ( type assign_list ; cond ; assignment ) code_body
+for_loop,tombaker ( assign_list ; cond ; expr ) code_body
+for_loop,tombaker ( type assign_list ; cond ; expr ) code_body
+while_loop,wobbly ( cond ) code_body
+do_while_loop,wibbly code_body wobbly ( cond ) ;
+until_loop,wimey ( cond ) code_body
+repeat_until_loop,timey code_body wimey ( cond ) ;
