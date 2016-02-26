@@ -93,17 +93,23 @@ public class State {
 				for(String look: lookahead ) {
 					Action theAction = actions.get(look);
 					if( theAction != null ) {
-						if( !printedState ) {
-							System.out.println(this);
-							printedState = true;
-						}
 						if( theAction.type().equals("SHIFT") ) {
+							if( !printedState ) {
+								System.out.println(this);
+								printedState = true;
+							}
+							
 							System.out.println("SR Conflict at terminal " 
 												+ look + " and production " 
 												+ currItem.prodString());
 							error = true;
 						} else {
 							if( theAction.type().equals("ACCEPT")) {
+								if( !printedState ) {
+									System.out.println(this);
+									printedState = true;
+								}
+								
 								System.out.println("AR conflict with " 
 											+ currItem.prodString());
 								error = true;
@@ -111,6 +117,11 @@ public class State {
 								Production conflict = theAction.reduction();
 								if( currItem.prodId() 
 										!= conflict.id() ) {
+									if( !printedState ) {
+										System.out.println(this);
+										printedState = true;
+									}
+									
 									System.out.println("RR Conflict " 
 														+ "with " 
 														+ currItem
