@@ -12,9 +12,12 @@ public class Interpreter {
 		this.code = code;
 		this.ntf = ntf;
 		try {
+			long time = System.currentTimeMillis();
 			tableGen = new TableGenerator(cfgFile);
 			parseTable = tableGen.generateParseTable();
+			System.out.println((System.currentTimeMillis() - time) / 1000.0 + " secs" );
 			parser = new Parser(ntf,parseTable);
+			// parser = new Parser(ntf,null);
 			if( parseTable == null ) {
 				throw new Exception("Cannot interpret due to conflicts in " 
 									+ "grammar");
@@ -27,6 +30,9 @@ public class Interpreter {
 	public void interpret() throws Exception {
 		tokenizer.setCode(code);
 		tokenizer.tokenize();
+		// for(Token t : tokenizer.getTokens() ) {
+		// 	System.out.println(t);
+		// }
 		parser.setTokens(tokenizer.getTokens());
 		NonTerminal start = parser.parse();
 		if( start != null ) {
