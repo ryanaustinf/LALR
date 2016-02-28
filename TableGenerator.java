@@ -78,6 +78,10 @@ public class TableGenerator {
 		computeFollows();
 	}
 
+	public Production getProduction(int index) {
+		return productionList.get(index);
+	}
+
 	public boolean isVariable(String var) {
 		for(String s: variables) {
 			if( s.equals(var)) {
@@ -392,7 +396,7 @@ public class TableGenerator {
 										new File("CFG.csv"))));
 			terminals.add(EOF);
 			for(String term: terminals ) {
-				pw.print("," + (term.equals(",") ? "\",\"" : term));
+				pw.print("," + (term.equals(",") ? "&com;" : term));
 			}
 			for(String var: variables ) {
 				pw.print("," + var);
@@ -401,6 +405,9 @@ public class TableGenerator {
 
 			boolean globalErr = false;
 			for(State state: states) {
+				if( state.id() == 65) {
+					System.out.println(state);
+				}
 				pw.print(state.id());
 				boolean error = state.generateReductions();
 		
