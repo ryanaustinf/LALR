@@ -405,9 +405,6 @@ public class TableGenerator {
 
 			boolean globalErr = false;
 			for(State state: states) {
-				if( state.id() == 65) {
-					System.out.println(state);
-				}
 				pw.print(state.id());
 				boolean error = state.generateReductions();
 		
