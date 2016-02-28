@@ -37,6 +37,14 @@ public class Value extends NonTerminal {
 				token = (Token)getComponent("string");
 				String str = token.token();
 				str = str.substring(1,str.length() - 1);
+				str = str.replaceAll("\\\\n","\n");
+				str = str.replaceAll("\\\\t","\t");
+				str = str.replaceAll("\\\\b","\b");
+				str = str.replaceAll("\\\\r","\r");
+				str = str.replaceAll("\\\\f","\f");
+				str = str.replaceAll("\\\\\'","'");
+				str = str.replaceAll("\\\\\"","\"");
+				str = str.replaceAll("\\\\\\\\","\\");;
 				strValue = thisString = str;
 				break;
 			default:

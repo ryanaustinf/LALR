@@ -12,5 +12,5 @@ TARDIS ( ) { demat ( value ) ; } func_decs
 TARDIS ( ) { demat ( string ) ; } func_decs
 TARDIS ( ) { demat ( string ) ; }*/
 TARDIS() {
-	demat("Hello," + " World!");
+	demat("Hello,\t" + " World!\nI'm the \"Doctor\"!");
 }
