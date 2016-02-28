@@ -18,7 +18,7 @@ public class Driver {
 			// br.close();
 
 			Interpreter interpreter 
-				= new Interpreter(null,null,"",args[0]);
+				= new Interpreter(null,null,"",args[0],true);
 			interpreter.interpret();
 		} catch(Exception e) {
 			// if( e.getMessage() != null) {

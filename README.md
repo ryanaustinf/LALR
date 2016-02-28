@@ -79,5 +79,8 @@ SYNTAX DIRECTED TRANSLATION
 	for each NonTerminal you made in step 4.
 
 6. Instantiate Interpreter in the Driver with the Tokenizer using setTokenizer(Tokenizer), 
-	NonTerminalFactory, cfg file, and code.
+	NonTerminalFactory, cfg file, and code. The final argument is true if you 
+	want to update the grammar's parse table. You can set it to false if the
+	grammar's parse table is already generated. The generator still needs the 
+	original CFG file however.
 7.  Run the Driver by java Driver <filename> and see your code run.

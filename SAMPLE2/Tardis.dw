@@ -12,12 +12,5 @@ TARDIS ( ) { demat ( value ) ; } func_decs
 TARDIS ( ) { demat ( string ) ; } func_decs
 TARDIS ( ) { demat ( string ) ; }*/
 TARDIS() {
-	rose x_1 = 33.;
-	clara x = 23.32;
-	demat("Hello, World! \n x_1 = " + x_1);
-	exterminate(x) {
-		doctor 1:
-			DELETE;
-		hartnell:
-	}
+	demat("Hello, World!");
 }

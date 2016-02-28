@@ -29,6 +29,10 @@ public class Parser {
 
 			Action act = topState.getAction(currToken.type());
 
+			// for( State s: states) {
+			// 	System.out.print(s.id() + " ");
+			// }
+
 			if( act == null ) {
 				error = true;
 				// System.out.println(topState);
@@ -67,6 +71,8 @@ public class Parser {
 						states.push(act.shift());
 						// System.out.println("To state " + states.peek().id());
 						currIndex++;
+						// System.out.print(currToken.type() + " | ");
+						// printStack();
 						break;
 					case "REDUCE":
 						Production p = act.reduction();

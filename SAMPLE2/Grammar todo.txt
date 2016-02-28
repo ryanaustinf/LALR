@@ -1,25 +1,16 @@
-main,main_func func_decs
-main_func,TARDIS ( ) { code }
 func_decs,func_dec func_decs
 func_decs,
 
-code,code_line code
-code,code_line
-code_line,safe_code_line
 code_line,if_stmt
 code_line,unless_stmt
 safe_code_line,declaration ;
 safe_code_line,assignment ;
 safe_code_line,return_stmt ;
-safe_code_line,DELETE ;
-safe_code_line,REGENERATE ;
 safe_code_line,switch_stmt
-safe_code_line,print_stmt ;
 safe_code_line,scan_stmt ;
 safe_code_line,func_call ;
 safe_code_line,loop
 
-print_stmt,demat ( expr )
 print_stmt,demat ( cond )
 print_stmt,demat ( func_call )
 print_stmt,demat ( assignment )
@@ -61,7 +52,6 @@ value,int
 value,float
 value,char
 value,array
-value,string
 
 cond,cond || cond2
 cond,cond2
@@ -81,17 +71,13 @@ cond5,( cond )
 
 expr,expr + expr2
 expr,expr - expr2
-expr,expr2
 expr2,expr2 * expr3
 expr2,expr2 / expr3
 expr2,expr2 % expr3
-expr2,expr3
 expr3,expr4 ^ expr3
-expr3,expr4
 //check if not 	boolean
 expr4,( assignment )
 expr4,( expr )
-expr4,value
 expr4,varname
 expr4,++ varname
 expr4,-- varname

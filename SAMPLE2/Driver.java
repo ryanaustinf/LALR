@@ -18,8 +18,9 @@ public class Driver {
 			br.close();
 
 			Interpreter interpreter 
-				= new Interpreter(new ConcreteTokenizer(),null,code
-									,"DoctorWho.txt");
+				= new Interpreter(new ConcreteTokenizer()
+									,ConcreteNonTerminalFactory.instance(),code
+									,"DoctorWho.txt",false);
 			interpreter.interpret();
 		} catch(Exception e) {
 			// if( e.getMessage() != null) {
