@@ -17,9 +17,9 @@ public class Interpreter {
 		this.ntf = ntf;
 		this.generate = generate;
 		try {
-			long time = System.currentTimeMillis();
+			// long time = System.currentTimeMillis();
 			computeParseTable(cfgFile);
-			System.out.println((System.currentTimeMillis() - time) / 1000.0 + " secs" );
+			// System.out.println((System.currentTimeMillis() - time) / 1000.0 + " secs" );
 			
 			parser = new Parser(ntf,parseTable);
 			// parser = new Parser(ntf,null);

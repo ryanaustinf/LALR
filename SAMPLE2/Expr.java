@@ -22,6 +22,10 @@ public class Expr extends NonTerminal {
 	public void interpret() throws Exception {
 		switch(getProdString()) {
 			case "expr + expr2":
+				nt1 = (NonTerminal)getComponent("expr");
+				nt1.interpret();
+				nt2 = (NonTerminal)getComponent("expr2");
+				nt2.interpret();
 				operation = "+";
 				break;
 			case "expr - expr2":
@@ -68,6 +72,13 @@ public class Expr extends NonTerminal {
 	public void execute() {
 		switch(operation) {
 			case "+":
+				nt1.execute();
+				nt2.execute();
+				if( ((Expr)nt1).getType().equals("string") 
+						|| ((Expr2)nt2).getType().equals("string") ) {
+					type = "string";
+					thisString = strValue = nt1.toString() + nt2.toString();
+				}
 				break;
 			case "-":
 				break;

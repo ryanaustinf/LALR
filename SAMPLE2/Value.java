@@ -35,7 +35,9 @@ public class Value extends NonTerminal {
 			case "string":
 				type = "string";
 				token = (Token)getComponent("string");
-				strValue = thisString = token.token();
+				String str = token.token();
+				str = str.substring(1,str.length() - 1);
+				strValue = thisString = str;
 				break;
 			default:
 		}
