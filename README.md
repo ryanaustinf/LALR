@@ -5,8 +5,7 @@
 
 where LHS is the left hand side and RHSi is parts of the production
 for all productions with the first production's LHS being the start symbol.
-All left hand sides must be in all uppercase and all references to variables
-must be consistent e.g.
+All references to variables must be consistent e.g.
 
 	VAR1 -> VAR2
 	VAR2 -> 0
@@ -16,7 +15,7 @@ is okay but
 	VAR1 -> Var2
 	VAR2 -> 0 
 
-is not okay
+is not okay.
 
 Do not put unnecessary whitespace or tabs in the grammar.
 Do not use the variable "START"
