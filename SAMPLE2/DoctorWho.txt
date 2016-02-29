@@ -45,6 +45,9 @@ assignment,varname = assignment
 assignment,varname = cond
 assignment,varname = expr
 assignment,varname = func_call
+assignment,varname array_index = assignment
+assignment,varname array_index = cond
+assignment,varname array_index = expr
 assignment,varname array_index = func_call
 assign_list,assignment &com; assign_list
 assign_list,assignment
@@ -52,7 +55,6 @@ array_index,[ int ] array_index
 array_index,[ int ]
 
 array,[ array_vals ]
-array,Array < type > ( expr )
 array_vals,
 array_vals,cond &com; array_vals
 array_vals,expr &com; array_vals
@@ -73,11 +75,10 @@ cond4,expr <= expr
 cond4,expr >= expr
 cond4,expr < expr
 cond4,expr > expr
-cond4,cond5
-cond5,expr == expr
-cond5,expr != expr
-cond5,bool_value
-cond5,( cond )
+cond4,expr == expr
+cond4,expr != expr
+cond4,bool_value
+cond4,( cond )
 
 expr,expr + expr2
 expr,expr - expr2
@@ -131,11 +132,13 @@ repeat_until_loop,timey code_body wimey ( cond ) ;
 return_stmt,gallifrey assignment
 return_stmt,gallifrey cond
 return_stmt,gallifrey expr
+return_stmt,gallifrey func_call
 return_stmt,gallifrey
 
 func_dec,type varname ( func_params ) { code }
 func_params,type varname &com; func_params
 func_params,type ... varname
+func_params,
 
 func_call,varname ( var_list )
 func_call,varname ( )

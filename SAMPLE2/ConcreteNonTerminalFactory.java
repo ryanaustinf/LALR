@@ -56,8 +56,7 @@ public class ConcreteNonTerminalFactory implements NonTerminalFactory {
 			case "value":
 				return new Value(pattern);
 			case "cond":
-				//return new Cond(pattern);
-				return null;
+				return new Cond(pattern);
 			case "cond2":
 				//return new Cond2(pattern);
 				return null;
@@ -66,9 +65,6 @@ public class ConcreteNonTerminalFactory implements NonTerminalFactory {
 				return null;
 			case "cond4":
 				//return new Cond4(pattern);
-				return null;
-			case "cond5":
-				//return new Cond5(pattern);
 				return null;
 			case "expr":
 				return new Expr(pattern);
