@@ -343,16 +343,20 @@ public class Expr extends NonTerminal {
 						strValue = x1.strValue();
 						switch(type2) {
 							case "int":
-								strValue.replaceAll("" + x2.intValue(),"");
+								strValue = strValue.replaceAll("" 
+												+ x2.intValue(),"");
 								break;
 							case "char":
-								strValue.replaceAll("" + x2.charValue(),"");
+								strValue = strValue.replaceAll("" 
+												+ x2.charValue(),"");
 								break;
 							case "float":
-								strValue.replaceAll("" + x2.floatValue(),"");
+								strValue = strValue.replaceAll("" 
+												+ x2.floatValue(),"");
 								break;
 							case "string":
-								strValue.replaceAll("" + x2.strValue(),"");
+								strValue = strValue.replaceAll("" 
+												+ x2.strValue(),"");
 								break;
 							case "array":
 							default:
