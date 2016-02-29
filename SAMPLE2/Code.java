@@ -15,9 +15,10 @@ public class Code extends NonTerminal {
 				cl.interpret();
 				codes.add(cl);
 				Code code = (Code)getComponent("code");
+				code.interpret();
 				CodeLine[] morecodes = code.getCodes();
 				for(CodeLine temp: morecodes) {
-					codes.add(cl);
+					codes.add(temp);
 				}
 				break;
 			case "code_line":

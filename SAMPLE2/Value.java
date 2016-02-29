@@ -22,12 +22,31 @@ public class Value extends NonTerminal {
 		switch(getProdString()) {
 			case "int":
 				type = "int";
+				token = (Token)getComponent("int");
+				intValue = Integer.parseInt(token.token());
+				thisString = "" + intValue;
 				break;
 			case "float":
 				type = "float";
+				token = (Token)getComponent("float");
+				floatValue = Double.parseDouble(token.token());
+				thisString = "" + floatValue;
 				break;
 			case "char":
 				type = "char";
+				token = (Token)getComponent("char");
+				String str = token.token();
+				str = str.substring(1,str.length() - 1)
+						.replaceAll("\\\\n","\n")
+						.replaceAll("\\\\t","\t")
+						.replaceAll("\\\\b","\b")
+						.replaceAll("\\\\r","\r")
+						.replaceAll("\\\\f","\f")
+						.replaceAll("\\\\\'","'")
+						.replaceAll("\\\\\"","\"")
+						.replaceAll("\\\\\\\\","\\");
+				charValue = str.charAt(0);
+				thisString = "" + charValue;
 				break;
 			case "array":
 				type = "array";
@@ -35,16 +54,16 @@ public class Value extends NonTerminal {
 			case "string":
 				type = "string";
 				token = (Token)getComponent("string");
-				String str = token.token();
-				str = str.substring(1,str.length() - 1);
-				str = str.replaceAll("\\\\n","\n");
-				str = str.replaceAll("\\\\t","\t");
-				str = str.replaceAll("\\\\b","\b");
-				str = str.replaceAll("\\\\r","\r");
-				str = str.replaceAll("\\\\f","\f");
-				str = str.replaceAll("\\\\\'","'");
-				str = str.replaceAll("\\\\\"","\"");
-				str = str.replaceAll("\\\\\\\\","\\");;
+				str = token.token();
+				str = str.substring(1,str.length() - 1)
+						.replaceAll("\\\\n","\n")
+						.replaceAll("\\\\t","\t")
+						.replaceAll("\\\\b","\b")
+						.replaceAll("\\\\r","\r")
+						.replaceAll("\\\\f","\f")
+						.replaceAll("\\\\\'","'")
+						.replaceAll("\\\\\"","\"")
+						.replaceAll("\\\\\\\\","\\");
 				strValue = thisString = str;
 				break;
 			default:

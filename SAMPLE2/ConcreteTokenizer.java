@@ -240,6 +240,9 @@ public class ConcreteTokenizer implements Tokenizer {
 					currToken += c;
 					if( c != '\'') {
 						state = 7;
+					} else {
+						addToken();
+						state = 0;
 					}
 					break;
 				//gibberish checker
@@ -304,7 +307,10 @@ public class ConcreteTokenizer implements Tokenizer {
 			} catch(NumberFormatException nfe2) {
 				if( currToken.matches("^\"([^\"]|\\\")*\"$") ) {
 					return "string";
-				} else if( currToken.matches("^'([^\\]|\\[.])'$") ) {
+				} else if( currToken.length() >= 2 && currToken.length() <= 4
+							&& currToken.charAt(0) == '\'' 
+							&& currToken.charAt(currToken.length() - 1) 
+								== '\'') {
 					return "char";
 				} else if( currToken.matches("^([a-zH-Z][A-Za-z0-9_]*|" 
 												+ "[A-G][A-Za-z0-9_]+)$") ) {

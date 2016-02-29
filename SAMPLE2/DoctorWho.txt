@@ -54,8 +54,8 @@ array_index,[ int ]
 array,[ array_vals ]
 array,Array < type > ( expr )
 array_vals,
-array_vals,cond array_vals
-array_vals,expr array_vals
+array_vals,cond &com; array_vals
+array_vals,expr &com; array_vals
 
 value,int
 value,float

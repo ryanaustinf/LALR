@@ -1,16 +1,10 @@
-/*main
-main_func func_decs
-TARDIS ( ) { code } func_decs
-TARDIS ( ) { code_line } func_decs
-TARDIS ( ) { safe_code_line } func_decs
-TARDIS ( ) { print_stmt ; } func_decs
-TARDIS ( ) { demat ( expr ) ; } func_decs
-TARDIS ( ) { demat ( expr2 ) ; } func_decs
-TARDIS ( ) { demat ( expr3 ) ; } func_decs
-TARDIS ( ) { demat ( expr4 ) ; } func_decs
-TARDIS ( ) { demat ( value ) ; } func_decs
-TARDIS ( ) { demat ( string ) ; } func_decs
-TARDIS ( ) { demat ( string ) ; }*/
 TARDIS() {
-	demat("Hello,\t" + " World!\nI'm the \"Doctor\"!");
+	demat("Hello,\t" + " World!\nI'm the \"Doctor\"!\n");
+	//should be 66
+	demat(2 + 2 ^ (2 * 3) + "\n");
+	//should be 10304
+	demat(((1 + 1 + 1 + 1 + 1)*(4 - 1 - 1)*(4 - 1 - 1)*(4 - 1 - 1)*(4 - 1 - 1)
+			*(4 - 1 - 1)*(4 - 1 - 1)*(4 - 1 - 1)*(4 - 1 - 1)*(4 - 1 - 1)
+			*(4 - 1 - 1))*2 + 2 ^ (2 * 3) + "\n");
+
 }
