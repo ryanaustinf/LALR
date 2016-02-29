@@ -71,13 +71,18 @@ public class State {
 					String[] first = tg.first(i.remains());
 					Production[] prods = tg.productions(currPart);
 					boolean hasEmpty = false;
-					for(String s: first) {
-						if( s.length() == 0 ) {
-							hasEmpty = true;
-						} else {
-							theFirst.add(s);
+					if( first.length > 0 ) {
+						for(String s: first) {
+							if( s.length() == 0 ) {
+								hasEmpty = true;
+							} else {
+								theFirst.add(s);
+							}
 						}
+					} else {
+						hasEmpty = true;
 					}
+
 					if( hasEmpty ) {
 						String[] temp = i.lookahead();
 						for(String s: temp) {

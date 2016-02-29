@@ -257,7 +257,7 @@ public class TableGenerator {
 					i++;
 				} while(hasEmpty); //while current item can be empty
 
-				return first.toArray(new String[0]);
+				return first.toArray(new String[1]);
 			}
 		}	
 	}
