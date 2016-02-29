@@ -77,9 +77,11 @@ expr4,varname --
 code_body,safe_code_line
 code_body,{ code }
 if_stmt,dontblink ( cond ) code_body
-if_stmt,dontblink ( cond ) code_body blinkandyouredead code_body
+if_stmt,dontblink ( cond ) code_body blinkandyouredead code_line
+if_stmt,dontblink ( cond ) code_body blinkandyouredead { code }
 unless_stmt,dontevenblink ( cond ) code_body
-unless_stmt,dontevenblink ( cond ) code_body blinkandyouredead code_body
+unless_stmt,dontevenblink ( cond ) code_body blinkandyouredead code_line
+unless_stmt,dontevenblink ( cond ) code_body blinkandyouredead { code }
 switch_stmt,exterminate ( cond ) { switch_body }
 switch_stmt,exterminate ( expr ) { switch_body }
 switch_body,case_body switch_body
