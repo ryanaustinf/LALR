@@ -19,7 +19,6 @@ safe_code_line,scan_stmt ;
 safe_code_line,func_call ;
 safe_code_line,loop
 
-print_stmt,demat ( expr )
 print_stmt,demat ( cond )
 print_stmt,demat ( func_call )
 print_stmt,demat ( assignment )
@@ -43,11 +42,9 @@ var_list,assignment
 
 assignment,varname = assignment
 assignment,varname = cond
-assignment,varname = expr
 assignment,varname = func_call
 assignment,varname array_index = assignment
 assignment,varname array_index = cond
-assignment,varname array_index = expr
 assignment,varname array_index = func_call
 assign_list,assignment &com; assign_list
 assign_list,assignment
@@ -57,13 +54,13 @@ array_index,[ int ]
 array,[ array_vals ]
 array_vals,
 array_vals,cond &com; array_vals
-array_vals,expr &com; array_vals
 
 value,int
 value,float
 value,char
 value,array
 value,string
+value,bool_value
 
 cond,cond || cond2
 cond,cond2
@@ -77,8 +74,8 @@ cond4,expr < expr
 cond4,expr > expr
 cond4,expr == expr
 cond4,expr != expr
-cond4,bool_value
-cond4,( cond )
+//must be boolean
+cond4,expr
 
 expr,expr + expr2
 expr,expr - expr2
@@ -91,7 +88,7 @@ expr3,expr4 ^ expr3
 expr3,expr4
 //check if not 	boolean
 expr4,( assignment )
-expr4,( expr )
+expr4,( cond )
 expr4,value
 expr4,varname
 expr4,++ varname
@@ -108,11 +105,9 @@ unless_stmt,dontevenblink ( cond ) code_body
 unless_stmt,dontevenblink ( cond ) code_body blinkandyouredead code_line
 unless_stmt,dontevenblink ( cond ) code_body blinkandyouredead { code }
 switch_stmt,exterminate ( cond ) { switch_body }
-switch_stmt,exterminate ( expr ) { switch_body }
 switch_body,case_body switch_body
 switch_body,default_body
 case_body,doctor value : code
-case_body,doctor bool_value : code
 default_body,hartnell : code
 
 loop,for_loop
@@ -122,8 +117,8 @@ loop,until_loop
 loop,repeat_until_loop
 for_loop,tomBaker ( assign_list ; cond ; assignment ) code_body
 for_loop,tomBaker ( type assign_list ; cond ; assignment ) code_body
-for_loop,tomBaker ( assign_list ; cond ; expr ) code_body
-for_loop,tomBaker ( type assign_list ; cond ; expr ) code_body
+for_loop,tomBaker ( assign_list ; cond ; cond ) code_body
+for_loop,tomBaker ( type assign_list ; cond ; cond ) code_body
 while_loop,wobbly ( cond ) code_body
 do_while_loop,wibbly code_body wobbly ( cond ) ;
 until_loop,wimey ( cond ) code_body
@@ -131,7 +126,6 @@ repeat_until_loop,timey code_body wimey ( cond ) ;
 
 return_stmt,gallifrey assignment
 return_stmt,gallifrey cond
-return_stmt,gallifrey expr
 return_stmt,gallifrey func_call
 return_stmt,gallifrey
 

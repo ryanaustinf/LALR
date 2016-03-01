@@ -1,21 +1,16 @@
 public class Print extends NonTerminal {
 	private NonTerminal nt;
 
-	private int lineNo;
-
 	public Print(String pattern) {
 		super("print_stmt",pattern);
 	}
 
 	public void interpret() throws Exception {
 		switch(getProdString()) {
-			case "demat ( expr )":
-				nt = (NonTerminal)getComponent("expr");
-				nt.interpret();
-				lineNo = ((Expr)nt).lineNo();
-				break;
 			case "demat ( cond )":
-				//TODO
+				nt = (NonTerminal)getComponent("cond");
+				nt.interpret();
+				put("lineNo",nt.getAsInt("lineNo"));
 				break;
 			case "demat ( func_call )":
 				//TODO
@@ -25,10 +20,6 @@ public class Print extends NonTerminal {
 				break;
 			default:
 		}
-	}
-
-	public int lineNo() {
-		return lineNo;
 	}
 
 	public void execute() {

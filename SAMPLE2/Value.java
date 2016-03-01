@@ -17,13 +17,13 @@ public class Value extends NonTerminal {
 				put("type","int");
 				token = (Token)getComponent("int");
 				put("value",Integer.parseInt(token.token()));
-				thisString = "" + intValue;
+				thisString = "" + getAsInt("value");
 				break;
 			case "float":
 				put("type","float");
 				token = (Token)getComponent("float");
 				put("value",Double.parseDouble(token.token()));
-				thisString = "" + floatValue;
+				thisString = "" + getAsDouble("value");
 				break;
 			case "char":
 				put("type","char");
@@ -39,7 +39,7 @@ public class Value extends NonTerminal {
 						.replaceAll("\\\\\"","\"")
 						.replaceAll("\\\\\\\\","\\");
 				put("value",str.charAt(0));
-				thisString = "" + charValue;
+				thisString = getAsString("value");
 				break;
 			case "array":
 				put("type","array");
@@ -58,6 +58,11 @@ public class Value extends NonTerminal {
 						.replaceAll("\\\\\"","\"")
 						.replaceAll("\\\\\\\\","\\");
 				put("value",thisString = str);
+				break;
+			case "bool_value":
+				token = (Token)getComponent("bool_value");
+				put("type","boolean");
+				put("value",((Token)getComponent("bool_value")).token().equals("true"));			
 				break;
 			default:
 		}

@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -5,7 +6,8 @@ import java.util.HashMap;
  * @author Austin Fernandez
  */
 public abstract class NonTerminal implements ParseObject {
-	private HashMap<String,ParseObject> components;
+	private HashMap<String,ArrayList<ParseObject>> components;
+	private HashMap<String,Object> values;
 	protected String type;
 	private String[] production;
 	private int setCtr;
@@ -16,12 +18,13 @@ public abstract class NonTerminal implements ParseObject {
 	 * @param prod the right hand side of this object's production
 	 */
 	public NonTerminal(String type,String prod) {
-		components = new HashMap<String,ParseObject>();
+		components = new HashMap<String,ArrayList<ParseObject>>();
 		this.type = type;
 		this.production = prod.equals("e") ? new String[0] : prod.split(" ");
 		// System.out.println(type + " ->" + getProdString() + ": " 
 		// 						+ this.production.length + " parts");
 		setCtr = 0;
+		values = new HashMap<String,Object>();
 	}
 
 	public String type() {
@@ -36,7 +39,19 @@ public abstract class NonTerminal implements ParseObject {
 	 * @return value mapped to key
 	 */
 	protected ParseObject getComponent(String key) {
-		return components.get(key);
+		ArrayList<ParseObject> al = components.get(key);
+		return al == null ? null : al.get(0);
+	}
+
+	/** 
+	 * returns the component associated with the given key and index
+	 * @param key key of component
+	 * @param index index of component
+	 * @return value mapped to key
+	 */
+	protected ParseObject getComponent(String key,int index) {
+		ArrayList<ParseObject> al = components.get(key);
+		return al == null ? null : (index >= al.size() ? null : al.get(index));
 	}
 
 	/**
@@ -71,7 +86,12 @@ public abstract class NonTerminal implements ParseObject {
 	 */
 	protected void setNext(ParseObject po) throws Exception {
 		if( !isSet() ) {
-			components.put(production[setCtr],po);
+			ArrayList<ParseObject> al = components.get(production[setCtr]);
+			if(al == null ) {
+				al = new ArrayList<ParseObject>();
+				components.put(production[setCtr],al);
+			}
+			al.add(po);
 			setCtr++;
 		} else {
 			throw new Exception("This object is already set");
@@ -85,5 +105,149 @@ public abstract class NonTerminal implements ParseObject {
 	public boolean isSet() {
 		// System.out.println(setCtr + "==" + production.length);
 		return setCtr == production.length;
+	}
+
+	/**
+	 * Puts an boolean into this nonterminals value map.
+	 * @param key key of value
+	 * @param value to store
+	 */
+	public void put(String key,boolean value) {
+		values.put(key,value);
+	}
+
+	/**
+	 * Puts an integer into this nonterminals value map.
+	 * @param key key of value
+	 * @param value to store
+	 */
+	public void put(String key,int value) {
+		values.put(key,value);
+	}
+
+	/**
+	 * Puts an float into this nonterminals value map.
+	 * @param key key of value
+	 * @param value to store
+	 */
+	public void put(String key,float value) {
+		values.put(key,value);
+	}
+
+	/**
+	 * Puts an double into this nonterminals value map.
+	 * @param key key of value
+	 * @param value to store
+	 */
+	public void put(String key,double value) {
+		values.put(key,value);
+	}
+
+	/**
+	 * Puts an longinto this nonterminals value map.
+	 * @param key key of value
+	 * @param value to store
+	 */
+	public void put(String key,long value) {
+		values.put(key,value);
+	}
+
+	/**
+	 * Puts an string into this nonterminals value map.
+	 * @param key key of value
+	 * @param value to store
+	 */
+	public void put(String key,String value) {
+		values.put(key,value);
+	}
+
+	/**
+	 * Puts an object into this nonterminals value map.
+	 * @param key key of value
+	 * @param value to store
+	 */
+	public void put(String key,Object value) {
+		values.put(key,value);
+	}
+
+	/**
+	 * Puts an array into this nonterminals value map.
+	 * @param key key of value
+	 * @param value to store
+	 */
+	public void put(String key,Object[] value) {
+		values.put(key,value);
+	}
+
+	/**
+	 * Returns the value of the chosen key as a boolean
+	 * @param key key of value
+	 * @return value stored
+	 */
+	public boolean getAsBoolean(String key) {
+		return (boolean)values.get(key);
+	}
+
+	/**
+	 * Returns the value of the chosen key as an int
+	 * @param key key of value
+	 * @return value stored
+	 */
+	public int getAsInt(String key) {
+		return (int)values.get(key);
+	}
+
+	/**
+	 * Returns the value of the chosen key as a float
+	 * @param key key of value
+	 * @return value stored
+	 */
+	public float getAsFloat(String key) {
+		return (float)values.get(key);
+	}
+
+	/**
+	 * Returns the value of the chosen key as a double
+	 * @param key key of value
+	 * @return value stored
+	 */
+	public double getAsDouble(String key) {
+		return (double)values.get(key);
+	}
+
+	/**
+	 * Returns the value of the chosen key as a long
+	 * @param key key of value
+	 * @return value stored
+	 */
+	public long getAsLong(String key) {
+		return (long)values.get(key);
+	}
+
+	/**
+	 * Returns the value of the chosen key as a String
+	 * @param key key of value
+	 * @return value stored
+	 */
+	public String getAsString(String key) {
+		return (String)values.get(key);
+	}
+
+	/**
+	 * Returns the value of the chosen key as an Object
+	 * @param key key of value
+	 * @return value stored
+	 */
+	public Object getAsObject(String key) {
+		return values.get(key);
+	}
+
+	/**
+	 * Returns the value of the chosen key as an array
+	 * @param key key of value
+	 * @return value stored
+	 */
+	public Object[] getAsArray(String key) {
+		return (Object[])values.get(key);
 	}
 }

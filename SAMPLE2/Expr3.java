@@ -1,21 +1,12 @@
 import java.util.ArrayList;
 
 public class Expr3 extends NonTerminal {
-	private int intValue;
-	private double floatValue;
-	private char charValue;
-	private Object[] arrayValue;
-	private String strValue;
-	private String type;
-	
 	private NonTerminal nt1;
 	private NonTerminal nt2;
 	
 	private String operation;
 
 	private String thisString;
-
-	private int lineNo;
 
 	public Expr3(String pattern) {
 		super("expr3",pattern);
@@ -29,44 +20,16 @@ public class Expr3 extends NonTerminal {
 				nt1.interpret();
 				nt2 = (NonTerminal)getComponent("expr3");
 				nt2.interpret();
-				lineNo = ((Expr4)nt1).lineNo();
+				put("lineNo",nt1.getAsInt("lineNo"));
 				break;
 			case "expr4":
 				nt1 = (NonTerminal)getComponent("expr4");
 				nt1.interpret();
 				operation = "";
-				lineNo = ((Expr4)nt1).lineNo();
+				put("lineNo",nt1.getAsInt("lineNo"));
 				break;
 			default:
 		}
-	}
-
-	public int lineNo() {
-		return lineNo;
-	}
-
-	public int intValue() {
-		return intValue;
-	}
-
-	public double floatValue() {
-		return floatValue;
-	}
-
-	public char charValue() {
-		return charValue;
-	}
-
-	public Object[] arrayValue() {
-		return arrayValue;
-	}
-
-	public String strValue() {
-		return strValue;
-	}
-
-	public String getType() {
-		return type;
 	}
 
 	public void execute() {
@@ -75,29 +38,27 @@ public class Expr3 extends NonTerminal {
 				nt1.execute();
 				nt2.execute();
 
-				Expr4 x1 = (Expr4)nt1;
-				String type1 = ((Expr4)nt1).getType();
+				String type1 = nt1.getAsString("type");
 				
-				Expr3 x2 = (Expr3)nt2;
-				String type2 = ((Expr3)nt2).getType();
+				String type2 = nt2.getAsString("type");
 				boolean error = false;
 				switch(type1) {
 					case "int":
 						switch(type2) {
 							case "int":
-								type = "int";
-								intValue = (int)Math.pow(x1.intValue()
-															,x2.intValue());
+								put("type","int");
+								put("value",(int)Math.pow(nt1.getAsInt("value")
+															,nt2.getAsInt("value")));
 								break;
 							case "float":
-								type = "float";
-								floatValue = Math.pow(x1.intValue()
-														,x2.floatValue());
+								put("type","float");
+								put("value",Math.pow(nt1.getAsInt("value")
+														,nt2.getAsDouble("value")));
 								break;
 							case "char":
-								type = "int";
-								intValue = (int)Math.pow(x1.intValue()
-															,x2.charValue());
+								put("type","int");
+								put("value",(int)Math.pow(nt1.getAsInt("value")
+															,nt2.getAsString("value").charAt(0)));
 								break;
 							case "array":
 							case "string":
@@ -108,19 +69,19 @@ public class Expr3 extends NonTerminal {
 					case "float":
 						switch(type2) {
 							case "int":
-								type = "float";
-								floatValue = Math.pow(x1.floatValue()
-														,x2.intValue());
+								put("type","float");
+								put("value",Math.pow(nt1.getAsDouble("value")
+														,nt2.getAsInt("value")));
 								break;
 							case "float":
-								type = "float";
-								floatValue = Math.pow(x1.floatValue()
-														,x2.floatValue());
+								put("type","float");
+								put("value",Math.pow(nt1.getAsDouble("value")
+														,nt2.getAsDouble("value")));
 								break;
 							case "char":
-								type = "float";
-								floatValue = Math.pow(x1.floatValue()
-														,x2.charValue());
+								put("type","float");
+								put("value",Math.pow(nt1.getAsDouble("value")
+														,nt2.getAsString("value").charAt(0)));
 								break;
 							case "array":
 							case "string":
@@ -131,19 +92,19 @@ public class Expr3 extends NonTerminal {
 					case "char":
 						switch(type2) {
 							case "int":
-								type = "int";
-								intValue = (int)Math.pow(x1.charValue()
-														,x2.intValue());
+								put("type","int");
+								put("value",(int)Math.pow(nt1.getAsString("value").charAt(0)
+														,nt2.getAsInt("value")));
 								break;
 							case "float":
-								type = "float";
-								floatValue = Math.pow(x1.charValue()
-														,x2.intValue());
+								put("type","float");
+								put("value",Math.pow(nt1.getAsString("value").charAt(0)
+														,nt2.getAsInt("value")));
 								break;
 							case "char":
-								type = "int";
-								intValue = (int)Math.pow(x1.charValue()
-														,x2.charValue());
+								put("type","int");
+								put("value",(int)Math.pow(nt1.getAsString("value").charAt(0)
+														,nt2.getAsString("value").charAt(0)));
 								break;
 							case "array":
 							case "string":
@@ -154,26 +115,28 @@ public class Expr3 extends NonTerminal {
 					case "array":
 						switch(type2) {
 							case "int":
-								type = "array";
-								arrayValue = x1.arrayValue();
+								put("type","array");
+								put("value",nt1.getAsArray("value"));
 								ArrayList<Object> obs = new ArrayList<Object>();
-								for(int i = 0; i < x2.intValue(); i++) {
+								Object[] arrayValue = getAsArray("value");
+								for(int i = 0; i < nt2.getAsInt("value"); i++) {
 									for(Object o : arrayValue) {
 										obs.add(o);
 									}
 								}
-								arrayValue = obs.toArray(new Object[1]);
+								put("value",obs.toArray(new Object[1]));
 								break;
 							case "char":
-								type = "array";
-								arrayValue = x1.arrayValue();
+								put("type","array");
+								put("value",nt1.getAsArray("value"));
 								obs = new ArrayList<Object>();
-								for(int i = 0; i < x2.charValue(); i++) {
+								arrayValue = getAsArray("value");
+								for(int i = 0; i < nt2.getAsString("value").charAt(0); i++) {
 									for(Object o : arrayValue) {
 										obs.add(o);
 									}
 								}
-								arrayValue = obs.toArray(new Object[1]);
+								put("value",obs.toArray(new Object[1]));
 								break;
 							case "float":
 							case "array":
@@ -185,20 +148,20 @@ public class Expr3 extends NonTerminal {
 					case "string":
 						switch(type2) {
 							case "int":
-								type = "string";
+								put("type","string");
 								String str = "";
-								for(int i = 0; i < x2.intValue(); i++ ) {
-									str += x1.strValue();
+								for(int i = 0; i < nt2.getAsInt("value"); i++ ) {
+									str += nt1.getAsString("value");
 								}
-								strValue = str;
+								put("value",str);
 								break;
 							case "char":
-								type = "string";
+								put("type","string");
 								str = "";
-								for(int i = 0; i < x2.intValue(); i++ ) {
-									str += x1.strValue();
+								for(int i = 0; i < nt2.getAsInt("value"); i++ ) {
+									str += nt1.getAsString("value");
 								}
-								strValue = str;
+								put("value",str);
 								break;
 							case "float":
 							case "array":
@@ -208,33 +171,38 @@ public class Expr3 extends NonTerminal {
 						}
 						break;
 					default:
+						error = true;
 				}
 				if( error ) {
-					type = "error";
+					put("type","error");
+					System.out.println("Unsupported operation " 
+													+ nt1 + "^" + nt2 
+													+ " at line " 
+													+ getAsInt("lineNo"));
 				} else {
 					updateString();
 				}
 				break;
 			default:
 				nt1.execute();
-				Expr4 expr = ((Expr4)nt1);
-				type = expr.getType();
-				switch(type) {
+				put("type",nt1.getAsString("type"));
+				switch(getAsString("type")) {
 					case "int":
-						intValue = expr.intValue();
-						thisString = "" + intValue;
+						put("value",nt1.getAsInt("value"));
+						thisString = "" + getAsInt("value");
 						break;
 					case "float":
-						floatValue = expr.floatValue();
-						thisString = "" + floatValue;
+						put("value",nt1.getAsDouble("value"));
+						thisString = "" + getAsDouble("value");
 						break;
 					case "char":
-						charValue = expr.charValue();
-						thisString = "" + charValue;
+						put("value",nt1.getAsString("value"));
+						thisString = "" + getAsString("value").charAt(0);
 						break;
 					case "array":
-						arrayValue = expr.arrayValue();
+						put("value",nt1.getAsArray("value"));
 						thisString = "";
+						Object[] arrayValue = getAsArray("value");
 						for(int i = 0; i < arrayValue.length; i++) {
 							if( i > 0 ) {
 								thisString += ",";
@@ -243,8 +211,12 @@ public class Expr3 extends NonTerminal {
 						} 
 						break;
 					case "string":
-						strValue = expr.strValue();
-						thisString = strValue;
+						put("value",nt1.getAsString("value"));
+						thisString = getAsString("value");
+						break;
+					case "boolean":
+						put("value",nt1.getAsBoolean("value"));
+						thisString = "" + getAsBoolean("value");
 						break;
 					default:
 				}
@@ -252,19 +224,20 @@ public class Expr3 extends NonTerminal {
 	}
 
 	private void updateString() {
-		switch(type) {
+		switch(getAsString("type")) {
 			case "int":
-				thisString = "" + intValue;
+				thisString = "" + getAsInt("value");
 				break;
 			case "float":
-				thisString = "" + floatValue;
+				thisString = "" + getAsDouble("value");
 				break;
 			case "char":
-				thisString = "" + charValue;
+				thisString = "" + getAsString("value").charAt(0);
 				break;
 			case "array":
 				thisString = "";
-				for(int i = 0; i < arrayValue.length; i++) {
+				Object[] arrayValue = getAsArray("value");
+				for(int i = 0; i < arrayValue.length; i++){
 					if( i > 0 ) {
 						thisString += ",";
 					}
@@ -272,7 +245,7 @@ public class Expr3 extends NonTerminal {
 				} 
 				break;
 			case "string":
-				thisString = strValue;
+				thisString = getAsString("value");
 				break;
 			default:
 		}

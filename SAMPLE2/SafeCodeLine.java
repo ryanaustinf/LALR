@@ -37,7 +37,7 @@ public class SafeCodeLine extends NonTerminal {
 				type = "print";
 				code = (NonTerminal)getComponent("print_stmt");
 				code.interpret();
-				lineNo = ((Print)code).lineNo();
+				put("lineNo",code.getAsInt("lineNo"));
 				break;
 			case "scan_stmt ;":
 				//TODO

@@ -20,7 +20,7 @@ public class Driver {
 			Interpreter interpreter 
 				= new Interpreter(new ConcreteTokenizer()
 									,ConcreteNonTerminalFactory.instance(),code
-									,"DoctorWho.txt",true);
+									,"DoctorWho.txt",false);
 			interpreter.interpret();
 		} catch(Exception e) {
 			// if( e.getMessage() != null) {
