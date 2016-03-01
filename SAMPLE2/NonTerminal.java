@@ -185,7 +185,8 @@ public abstract class NonTerminal implements ParseObject {
 	 * @return value stored
 	 */
 	public boolean getAsBoolean(String key) {
-		return (boolean)values.get(key);
+		Object o = values.get(key);
+		return (boolean)o;
 	}
 
 	/**
@@ -194,7 +195,8 @@ public abstract class NonTerminal implements ParseObject {
 	 * @return value stored
 	 */
 	public int getAsInt(String key) {
-		return (int)values.get(key);
+		Object o = values.get(key);
+		return (int)o;
 	}
 
 	/**
@@ -203,7 +205,8 @@ public abstract class NonTerminal implements ParseObject {
 	 * @return value stored
 	 */
 	public float getAsFloat(String key) {
-		return (float)values.get(key);
+		Object o = values.get(key);
+		return (float)o;
 	}
 
 	/**
@@ -212,7 +215,8 @@ public abstract class NonTerminal implements ParseObject {
 	 * @return value stored
 	 */
 	public double getAsDouble(String key) {
-		return (double)values.get(key);
+		Object o = values.get(key);
+		return (double)o;
 	}
 
 	/**
@@ -221,7 +225,8 @@ public abstract class NonTerminal implements ParseObject {
 	 * @return value stored
 	 */
 	public long getAsLong(String key) {
-		return (long)values.get(key);
+		Object o = values.get(key);
+		return (long)o;
 	}
 
 	/**
@@ -230,7 +235,8 @@ public abstract class NonTerminal implements ParseObject {
 	 * @return value stored
 	 */
 	public String getAsString(String key) {
-		return (String)values.get(key);
+		Object o = values.get(key);
+		return (String)o;
 	}
 
 	/**
@@ -248,6 +254,7 @@ public abstract class NonTerminal implements ParseObject {
 	 * @return value stored
 	 */
 	public Object[] getAsArray(String key) {
-		return (Object[])values.get(key);
+		Object o = values.get(key);
+		return (Object[])o;
 	}
 }

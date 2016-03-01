@@ -11,11 +11,13 @@ public class SafeCodeLine extends NonTerminal {
 		switch(getProdString()) {
 			case "declaration ;":
 				type = "declaration";
-				//TODO
+				code = (NonTerminal)getComponent("declaration");
+				code.interpret();
 				break;
 			case "assignment ;":
 				type = "assignment";
-				//TODO
+				code = (NonTerminal)getComponent("assignment");
+				code.interpret();
 				break;
 			case "return_stmt ;":
 				type = "return";

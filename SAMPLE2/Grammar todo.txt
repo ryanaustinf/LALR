@@ -3,8 +3,6 @@ func_decs,
 
 code_line,if_stmt
 code_line,unless_stmt
-safe_code_line,declaration ;
-safe_code_line,assignment ;
 safe_code_line,return_stmt ;
 safe_code_line,switch_stmt
 safe_code_line,scan_stmt ;
@@ -16,23 +14,6 @@ print_stmt,demat ( assignment )
 
 scan_stmt,sonic ( type )
 
-//void,int, float, char, string, boolean, array
-type,rose
-type,martha
-type,donna
-type,amy
-type,clara
-type,jo
-type,sarahJane
-
-declaration,type var_list
-var_list,varname &com; var_list
-var_list,assignment &com; var_list
-var_list,varname
-var_list,assignment
-
-assignment,varname = assignment
-assignment,varname = cond
 assignment,varname = func_call
 assignment,varname array_index = assignment
 assignment,varname array_index = cond
@@ -49,7 +30,6 @@ array_vals,cond &com; array_vals
 value,array
 
 expr5,( assignment )
-expr5,varname
 expr5,++ varname
 expr5,-- varname
 expr5,varname ++

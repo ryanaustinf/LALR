@@ -13,4 +13,11 @@ TARDIS() {
 	demat("FUCK EVERYTHING" - "VER" + "\n");
 	demat((!(4 == 4) || 3 != 2) + "\n");
 	demat((true && false) + "\n");
+
+	martha x = 5;
+	demat(x + "\n");
+	x = x + 1;
+	demat(x + "\n");
+	clara str = "My integer is ";
+	demat(str + x);
 }

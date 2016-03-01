@@ -30,17 +30,13 @@ public class ConcreteNonTerminalFactory implements NonTerminalFactory {
 				//return new Scan_stmt(pattern);
 				return null;
 			case "type":
-				//return new Type(pattern);
-				return null;
+				return new Type(pattern);
 			case "declaration":
-				//return new Declaration(pattern);
-				return null;
+				return new Declaration(pattern);
 			case "var_list":
-				//return new Var_list(pattern);
-				return null;
+				return new VarList(pattern);
 			case "assignment":
-				//return new Assignment(pattern);
-				return null;
+				return new Assignment(pattern);
 			case "assign_list":
 				//return new Assign_list(pattern);
 				return null;

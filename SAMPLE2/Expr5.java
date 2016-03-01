@@ -27,6 +27,8 @@ public class Expr5 extends NonTerminal {
 				put("lineNo", nt1.getAsInt("lineNo"));
 				break;
 			case "varname":
+				put("varname",((Token)getComponent("varname")).token());
+				put("lineNo",((Token)getComponent("varname")).lineNo());
 				break;
 			case "varname array_index":
 				break;
@@ -87,6 +89,30 @@ public class Expr5 extends NonTerminal {
 				}
 				break;
 			case "varname":
+				SymbolTable st = SymbolTable.instance();
+				Variable v = st.get(getAsString("varname"));
+				put("type",v.type());
+				switch(getAsString("type")) {
+					case "int":
+						put("value",v.getAsInt());
+						break;
+					case "float":
+						put("value",v.getAsDouble());
+						break;
+					case "char":
+						put("value",v.getAsString());
+						break;
+					case "string":
+						put("value",v.getAsString());
+						break;
+					case "boolean":
+						put("value",v.getAsBoolean());
+						break;
+					case "array":
+						put("value",v.getAsArray());
+						break;
+					default:
+				}
 				break;
 			case "++ varname":
 				break;
