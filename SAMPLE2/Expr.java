@@ -371,7 +371,7 @@ public class Expr extends NonTerminal {
 						thisString = "" + getAsDouble("value");
 						break;
 					case "char":
-						put("value",nt1.getAsString("value").charAt(0));
+						put("value",nt1.getAsString("value"));
 						thisString = "" + getAsString("value").charAt(0);
 						break;
 					case "array":

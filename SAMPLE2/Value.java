@@ -38,7 +38,7 @@ public class Value extends NonTerminal {
 						.replaceAll("\\\\\'","'")
 						.replaceAll("\\\\\"","\"")
 						.replaceAll("\\\\\\\\","\\");
-				put("value",str.charAt(0));
+				put("value",str);
 				thisString = getAsString("value");
 				break;
 			case "array":

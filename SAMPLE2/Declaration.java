@@ -26,7 +26,8 @@ public class Declaration extends NonTerminal {
 				Token t = (Token)var;
 				boolean ok = st.declare(t.token(),getAsString("type"));
 				if( !ok ) {
-					System.out.println(t.token() + " already declared at line " 
+					System.out.println("Error: " + t.token() 
+										+ " already declared at line " 
 										+ t.lineNo());
 				}
 			} else {

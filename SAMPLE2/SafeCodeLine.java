@@ -66,6 +66,11 @@ public class SafeCodeLine extends NonTerminal {
 	}
 
 	public void execute() {
-		code.execute();
+		try {
+			code.execute();
+		} catch(Exception e) {
+			System.out.println(e.getMessage());
+			// e.printStackTrace();
+		}
 	}
 }

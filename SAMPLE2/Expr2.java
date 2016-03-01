@@ -53,7 +53,7 @@ public class Expr2 extends NonTerminal {
 			case "*":
 				nt1.execute();
 				nt2.execute();
-
+				
 				String type1 = nt1.getAsString("type");
 				String type2 = nt2.getAsString("type");
 				boolean error = false;
@@ -349,7 +349,7 @@ public class Expr2 extends NonTerminal {
 						thisString = "" + getAsDouble("value");
 						break;
 					case "char":
-						put("value",nt1.getAsString("value").charAt(0));
+						put("value",nt1.getAsString("value"));
 						thisString = "" + getAsString("value");
 						break;
 					case "array":

@@ -2,7 +2,7 @@ TARDIS() {
 	demat("Hello,\t" + " World!\nI'm the \"Doctor\"!\n");
 	//should be 66
 	demat(2 + 2 ^ (2 * 3) + "\n");
-	//should be 10304
+	//should be shit
 	demat(((-1 + -1 + -1 + -1 + -1)*(4 - 1.33 - 0.33 - 4.33)
 			*(4 - 1.33 - 0.33 - 4.33)*(4 - 1.33 - 0.33 - 4.33)
 			*(4 - 1.33 - 0.33 - 4.33)*(4 - 1.33 - 0.33 - 4.33)
@@ -14,10 +14,13 @@ TARDIS() {
 	demat((!(4 == 4) || 3 != 2) + "\n");
 	demat((true && false) + "\n");
 
-	martha x = 5;
-	demat(x + "\n");
-	x = x + 1;
-	demat(x + "\n");
-	clara str = "My integer is ";
-	demat(str + x);
+	martha x = 5, y = 4;
+	amy x2 = 'c';
+	demat(x + "\n"); //5
+	x = x + 1 + y;
+	demat(x + x2 + "\n"); //109
+	clara str = "My integer is ",num = "5";
+	y = num; //"5" is cast to int
+	x = x + y; //10 + 5
+	demat(str + x2 + x); //
 }

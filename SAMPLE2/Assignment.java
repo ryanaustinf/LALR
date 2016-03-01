@@ -50,17 +50,22 @@ public class Assignment extends NonTerminal {
 		SymbolTable st = SymbolTable.instance();
 		sub.execute();
 		String type = getAsString("type");
+		String type2 = sub.getAsString("type");
 		if( type == null ) {
 			Variable v = st.get(getAsString("varname"));
 			if( v == null ) {
-				System.out.println("Undeclared variable " 
+				System.out.println("Error: Undeclared variable " 
 									+ getAsString("varname") + " at line " 
 									+ getAsInt("lineNo"));
 			} else {
 				type = v.type();
 			}
 		} else {
-			st.declare(getAsString("varname"),getAsString("type"));
+			if(!st.declare(getAsString("varname"),getAsString("type"))) {
+				System.out.println("Error: " + getAsString("varname") 
+										+ " already declared at line " 
+										+ getAsInt("lineNo"));
+			}
 		}
 		
 		if( array ) {
@@ -68,32 +73,219 @@ public class Assignment extends NonTerminal {
 		} else {
 			switch(type) {
 				case "int":
-					st.assign(getAsString("varname"),sub.getAsInt("value"));
-					put("value",sub.getAsInt("value"));
+					switch(type2) {
+						case "int":
+							st.assign(getAsString("varname"),sub.getAsInt("value"));
+							put("value",sub.getAsInt("value"));
+							break;
+						case "float":
+							st.assign(getAsString("varname"),(int)sub.getAsDouble("value"));
+							put("value",(int)sub.getAsDouble("value"));
+							break;
+						case "char":
+							st.assign(getAsString("varname"),sub.getAsString("value").charAt(0));
+							put("value",sub.getAsString("value").charAt(0));
+							break;
+						case "string":
+							try {
+								st.assign(getAsString("varname"),Integer.parseInt(sub.getAsString("value")));
+								put("value",Integer.parseInt(sub.getAsString("value")));
+							} catch(Exception e) {
+								System.out.println("Error at line " 
+													+ getAsInt("lineNo") + ": " 
+													+ sub.getAsString("value") 
+													+ " cannot be converted to int.");
+							}
+							break;
+						case "boolean":
+							st.assign(getAsString("varname"),sub.getAsBoolean("value") ? 1 : 0);
+							put("value",sub.getAsBoolean("value") ? 1 : 0);
+							break;
+						case "array":
+							System.out.println("Error at line " 
+													+ getAsInt("lineNo") + ": " 
+													+ sub.getAsArray("value") 
+													+ " cannot be converted to int.");
+							break;
+						default:				
+					}
 					break;
 				case "float":
-					st.assign(getAsString("varname"),sub.getAsDouble("value"));
-					put("value",sub.getAsDouble("value"));
+					switch(type2) {
+						case "int":
+							st.assign(getAsString("varname"),1.0 * sub.getAsInt("value"));
+							put("value",sub.getAsInt("value") * 1.0);
+							break;
+						case "float":
+							st.assign(getAsString("varname"),sub.getAsDouble("value"));
+							put("value",sub.getAsDouble("value"));
+							break;
+						case "char":
+							st.assign(getAsString("varname"),1.0 * sub.getAsString("value").charAt(0));
+							put("value",1.0 * sub.getAsString("value").charAt(0));
+							break;
+						case "string":
+							try {
+								st.assign(getAsString("varname"),Double.parseDouble(sub.getAsString("value")));
+								put("value",Double.parseDouble(sub.getAsString("value")));
+							} catch(Exception e) {
+								System.out.println("Error at line " 
+													+ getAsInt("lineNo") + ": " 
+													+ sub.getAsString("value") 
+													+ " cannot be converted to float.");
+							}
+							break;
+						case "boolean":
+							st.assign(getAsString("varname"),sub.getAsBoolean("value") ? 1.0 : 0.0);
+							put("value",sub.getAsBoolean("value") ? 1.0 : 0.0);
+							break;
+						case "array":
+							System.out.println("Error at line " 
+													+ getAsInt("lineNo") + ": " 
+													+ sub.getAsArray("value") 
+													+ " cannot be converted to float.");
+							break;
+						default:				
+					}
 					break;
 				case "char":
-					st.assign(getAsString("varname"),sub.getAsString("value"));
-					put("value",sub.getAsString("value"));
+					switch(type2) {
+						case "int":
+							st.assign(getAsString("varname"),"" + (char)sub.getAsInt("value"));
+							put("value","" + (char)sub.getAsInt("value"));
+							break;
+						case "float":
+							st.assign(getAsString("varname"),"" + (char)sub.getAsDouble("value"));
+							put("value","" + (char)sub.getAsDouble("value"));
+							break;
+						case "char":
+							st.assign(getAsString("varname"),sub.getAsString("value"));
+							put("value",sub.getAsString("value"));
+							break;
+						case "string":
+							String temp = sub.getAsString("value");
+							if( temp.length() == 1 ) {
+								st.assign(getAsString("varname"),temp);
+								put("value",temp);
+							} else {
+								System.out.println("Error at line " 
+													+ getAsInt("lineNo") + ": " 
+													+ sub.getAsString("value") 
+													+ " cannot be converted to char.");
+							}
+							break;
+						case "boolean":
+							st.assign(getAsString("varname")
+										,sub.getAsBoolean("value") 
+											? ("" + (char)1) : ("" + (char)0));
+							put("value",sub.getAsBoolean("value") 
+											? ("" + (char)1) : ("" + (char)0));
+							break;
+						case "array":
+							System.out.println("Error at line " 
+													+ getAsInt("lineNo") + ": " 
+													+ sub.getAsArray("value") 
+													+ " cannot be converted to char.");
+							break;
+						default:				
+					}
 					break;
 				case "string":
-					st.assign(getAsString("varname"),sub.getAsString("value"));
-					put("value",sub.getAsString("value"));
+					switch(type2) {
+						case "int":
+							st.assign(getAsString("varname"),"" + sub.getAsInt("value"));
+							put("value",sub.getAsInt("value") + "");
+							break;
+						case "float":
+							st.assign(getAsString("varname"),"" + sub.getAsDouble("value"));
+							put("value","" + sub.getAsDouble("value"));
+							break;
+						case "char":
+							st.assign(getAsString("varname"),sub.getAsString("value"));
+							put("value",sub.getAsString("value"));
+							break;
+						case "string":
+							st.assign(getAsString("varname"),sub.getAsString("value"));
+							put("value",sub.getAsString("value"));
+							break;
+						case "boolean":
+							st.assign(getAsString("varname"),sub.getAsBoolean("value") + "");
+							put("value",sub.getAsBoolean("value") + "");
+							break;
+						case "array":
+							Object[] obs = sub.getAsArray("value");
+							String temp = "";
+							for(Object o : obs) {
+								temp += o.toString();
+							}
+							break;
+						default:				
+					}
 					break;
 				case "boolean":
-					st.assign(getAsString("varname"),sub.getAsBoolean("value"));
-					put("value",sub.getAsBoolean("value"));
+					switch(type2) {
+						case "int":
+							st.assign(getAsString("varname"),sub.getAsInt("value") != 0);
+							put("value",sub.getAsInt("value") != 0);
+							break;
+						case "float":
+							st.assign(getAsString("varname"),sub.getAsDouble("value") != 0.0);
+							put("value",sub.getAsDouble("value") != 0.0);
+							break;
+						case "char":
+							st.assign(getAsString("varname"),!sub.getAsString("value").equals("\0"));
+							put("value",!sub.getAsString("value").equals("\0"));
+							break;
+						case "string":
+							st.assign(getAsString("varname"),sub.getAsString("value").equals("true"));
+							put("value",sub.getAsString("value").equals("true"));
+							break;
+						case "boolean":
+							st.assign(getAsString("varname"),sub.getAsBoolean("value"));
+							put("value",sub.getAsBoolean("value"));
+							break;
+						case "array":
+							System.out.println("Error at line " 
+													+ getAsInt("lineNo") + ": " 
+													+ sub.getAsArray("value") 
+													+ " cannot be converted to char.");
+							break;
+						default:				
+					}
 					break;
 				case "array":
-					st.assign(getAsString("varname"),sub.getAsArray("value"));
-					put("value",sub.getAsArray("value"));
+					switch(type2) {
+						case "int":
+							st.assign(getAsString("varname"),new Object[]{sub.getAsInt("value")});
+							put("value",new Object[sub.getAsInt("value")]);
+							break;
+						case "float":
+							st.assign(getAsString("varname"),new Object[]{sub.getAsDouble("value")});
+							put("value",new Object[]{sub.getAsDouble("value")});
+							break;
+						case "char":
+							st.assign(getAsString("varname"),new Object[]{sub.getAsString("value")});
+							put("value",new Object[]{sub.getAsString("value")});
+							break;
+						case "string":
+							st.assign(getAsString("varname"),new Object[]{sub.getAsString("value")});
+							put("value",new Object[]{sub.getAsString("value")});
+							break;
+						case "boolean":
+							st.assign(getAsString("varname"),new Object[]{sub.getAsBoolean("value")});
+							put("value",new Object[]{sub.getAsBoolean("value")});
+							break;
+						case "array":
+							st.assign(getAsString("varname"),sub.getAsArray("value"));
+							put("value",sub.getAsArray("value"));
+							break;
+						default:				
+					}
 					break;
 				default:
 			}
 		}
+		put("type",type);
 	}
 
 	public String toString() {
