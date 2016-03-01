@@ -45,7 +45,7 @@ public class Expr extends NonTerminal {
 			case "+":
 				nt1.execute();
 				nt2.execute();
-
+				
 				String type1 = nt1.getAsString("type");
 				String type2 = nt2.getAsString("type");
 				boolean error = false;

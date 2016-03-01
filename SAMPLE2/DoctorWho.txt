@@ -86,15 +86,18 @@ expr2,expr2 % expr3
 expr2,expr3
 expr3,expr4 ^ expr3
 expr3,expr4
-//check if not 	boolean
-expr4,( assignment )
-expr4,( cond )
-expr4,value
-expr4,varname
-expr4,++ varname
-expr4,-- varname
-expr4,varname ++
-expr4,varname --
+expr4,+ expr4
+expr4,- expr4
+expr4,expr5
+expr5,++ varname
+expr5,-- varname
+expr5,varname ++
+expr5,varname --
+expr5,value
+expr5,( assignment )
+expr5,( cond )
+expr5,varname
+expr5,varname array_index
 
 code_body,safe_code_line
 code_body,{ code }

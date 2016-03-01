@@ -48,12 +48,12 @@ array_vals,cond &com; array_vals
 
 value,array
 
-expr4,( assignment )
-expr4,varname
-expr4,++ varname
-expr4,-- varname
-expr4,varname ++
-expr4,varname --
+expr5,( assignment )
+expr5,varname
+expr5,++ varname
+expr5,-- varname
+expr5,varname ++
+expr5,varname --
 
 code_body,safe_code_line
 code_body,{ code }

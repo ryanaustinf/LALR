@@ -71,6 +71,8 @@ public class ConcreteNonTerminalFactory implements NonTerminalFactory {
 				return new Expr3(pattern);
 			case "expr4":
 				return new Expr4(pattern);
+			case "expr5":
+				return new Expr5(pattern);
 			case "code_body":
 				//return new Code_body(pattern);
 				return null;

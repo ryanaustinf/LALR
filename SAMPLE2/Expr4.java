@@ -1,12 +1,9 @@
+import java.util.ArrayList;
+
 public class Expr4 extends NonTerminal {
 	private NonTerminal nt1;
-	private NonTerminal nt2;
 	
-	private String operation;
-
 	private String thisString;
-
-	private int lineNo;
 
 	public Expr4(String pattern) {
 		super("expr4",pattern);
@@ -14,27 +11,20 @@ public class Expr4 extends NonTerminal {
 
 	public void interpret() throws Exception {
 		switch(getProdString()) {
-			case "( assignment )":
-				break;
-			case "( cond )":
-				nt1 = (NonTerminal)getComponent("cond");
+			case "+ expr4":
+				nt1 = (NonTerminal)getComponent("expr4");
 				nt1.interpret();
-				put("lineNo", nt1.getAsInt("lineNo"));
+				put("lineNo",nt1.getAsInt("lineNo"));
 				break;
-			case "value":
-				nt1 = (NonTerminal)getComponent("value");
+			case "- expr4":
+				nt1 = (NonTerminal)getComponent("expr4");
 				nt1.interpret();
-				put("lineNo", nt1.getAsInt("lineNo"));
+				put("lineNo",nt1.getAsInt("lineNo"));
 				break;
-			case "varname":
-				break;
-			case "++ varname":
-				break;
-			case "-- varname":
-				break;
-			case "varname ++":
-				break;
-			case "varname --":
+			case "expr5":
+				nt1 = (NonTerminal)getComponent("expr5");
+				nt1.interpret();
+				put("lineNo",nt1.getAsInt("lineNo"));
 				break;
 			default:
 		}
@@ -42,12 +32,8 @@ public class Expr4 extends NonTerminal {
 
 	public void execute() {
 		switch(getProdString()) {
-			case "( assignment )":
-				break;
-			case "( cond )":
+			case "+ expr4":
 				nt1.execute();
-				//fall-through
-			case "value":
 				put("type",nt1.getAsString("type"));
 				switch(getAsString("type")) {
 					case "int":
@@ -60,7 +46,57 @@ public class Expr4 extends NonTerminal {
 						break;
 					case "char":
 						put("value",nt1.getAsString("value"));
-						thisString = "" + getAsString("value");
+						thisString = "" + getAsString("value").charAt(0);
+						break;
+					case "array":
+					case "string":
+						break;
+					default:
+						put("type","error");
+						System.out.println("Unsupported operation +" + nt1 
+											+ " at line " + getAsInt("lineNo"));
+				}
+				break;
+			case "- expr4":
+				nt1.execute();
+				put("type",nt1.getAsString("type"));
+				switch(getAsString("type")) {
+					case "int":
+						put("value",-nt1.getAsInt("value"));
+						thisString = "" + -getAsInt("value");
+						break;
+					case "float":
+						put("value",-nt1.getAsDouble("value"));
+						thisString = "" + -getAsDouble("value");
+						break;
+					case "char":
+						put("value",-nt1.getAsString("value").charAt(0) + "");
+						thisString = "" + -getAsString("value").charAt(0);
+						break;
+					case "array":
+					case "string":
+						break;
+					default:
+						put("type","error");
+						System.out.println("Unsupported operation +" + nt1 
+											+ " at line " + getAsInt("lineNo"));
+				}
+				break;
+			default:
+				nt1.execute();
+				put("type",nt1.getAsString("type"));
+				switch(getAsString("type")) {
+					case "int":
+						put("value",nt1.getAsInt("value"));
+						thisString = "" + getAsInt("value");
+						break;
+					case "float":
+						put("value",nt1.getAsDouble("value"));
+						thisString = "" + getAsDouble("value");
+						break;
+					case "char":
+						put("value",nt1.getAsString("value"));
+						thisString = "" + getAsString("value").charAt(0);
 						break;
 					case "array":
 						put("value",nt1.getAsArray("value"));
@@ -83,16 +119,32 @@ public class Expr4 extends NonTerminal {
 						break;
 					default:
 				}
+		}
+	}
+
+	private void updateString() {
+		switch(getAsString("type")) {
+			case "int":
+				thisString = "" + getAsInt("value");
 				break;
-			case "varname":
+			case "float":
+				thisString = "" + getAsDouble("value");
 				break;
-			case "++ varname":
+			case "char":
+				thisString = "" + getAsString("value").charAt(0);
 				break;
-			case "-- varname":
+			case "array":
+				thisString = "";
+				Object[] arrayValue = getAsArray("value");
+				for(int i = 0; i < arrayValue.length; i++){
+					if( i > 0 ) {
+						thisString += ",";
+					}
+					thisString += arrayValue[i].toString();
+				} 
 				break;
-			case "varname ++":
-				break;
-			case "varname --":
+			case "string":
+				thisString = getAsString("value");
 				break;
 			default:
 		}
