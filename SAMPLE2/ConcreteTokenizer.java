@@ -18,8 +18,8 @@ public class ConcreteTokenizer implements Tokenizer {
 		reserved = new String[] {
 			"TARDIS","rose","martha","donna","amy","clara","jo","sarahJane",
 			"DELETE","REGENERATE","sonic","dontblink","dontevenblink",
-			"gallifrey","exterminate","demat","tomBaker","wobbly","wibbly",
-			"wimey","timey","blinkandyouredead","doctor","hartnell","Array"
+			"gallifrey","exterminate","demat","demater","tomBaker","wobbly",
+			"wibbly","wimey","timey","blinkandyouredead","doctor","hartnell"
 		};
 		operators = new String[] {
 			"(",")","{","...","}",";","=","[","!","++","--",",","||","+","-",

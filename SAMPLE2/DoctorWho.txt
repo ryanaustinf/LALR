@@ -22,6 +22,9 @@ safe_code_line,loop
 print_stmt,demat ( cond )
 print_stmt,demat ( func_call )
 print_stmt,demat ( assignment )
+print_stmt,demater ( cond )
+print_stmt,demater ( func_call )
+print_stmt,demater ( assignment )
 
 scan_stmt,sonic ( type )
 

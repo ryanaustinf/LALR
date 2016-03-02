@@ -186,11 +186,7 @@ public abstract class NonTerminal implements ParseObject {
 	 */
 	public boolean getAsBoolean(String key) {
 		Object o = values.get(key);
-		if( o != null ) {
-			return (boolean)o;
-		} else {
-			return null;
-		}
+		return (boolean)o;
 	}
 
 	/**
@@ -200,11 +196,7 @@ public abstract class NonTerminal implements ParseObject {
 	 */
 	public int getAsInt(String key) {
 		Object o = values.get(key);
-		if( o != null ) {
-			return (int)o;
-		} else {
-			return null;
-		}
+		return (int)o;
 	}
 
 	/**
@@ -214,11 +206,7 @@ public abstract class NonTerminal implements ParseObject {
 	 */
 	public float getAsFloat(String key) {
 		Object o = values.get(key);
-		if( o != null ) {
-			return (float)o;
-		} else {
-			return null;
-		}
+		return (float)o;
 	}
 
 	/**
@@ -228,11 +216,7 @@ public abstract class NonTerminal implements ParseObject {
 	 */
 	public double getAsDouble(String key) {
 		Object o = values.get(key);
-		if( o != null ) {
-			return (double)o;
-		} else {
-			return null;
-		}
+		return (double)o;
 	}
 
 	/**
@@ -242,11 +226,7 @@ public abstract class NonTerminal implements ParseObject {
 	 */
 	public long getAsLong(String key) {
 		Object o = values.get(key);
-		if( o != null ) {
-			return (long)o;
-		} else {
-			return null;
-		}
+		return (long)o;
 	}
 
 	/**
@@ -256,11 +236,7 @@ public abstract class NonTerminal implements ParseObject {
 	 */
 	public String getAsString(String key) {
 		Object o = values.get(key);
-		if( o != null ) {
-			return (String)o;
-		} else {
-			return null;
-		}
+		return (String)o;
 	}
 
 	/**
@@ -269,12 +245,7 @@ public abstract class NonTerminal implements ParseObject {
 	 * @return value stored
 	 */
 	public Object getAsObject(String key) {
-		Object o values.get(key);
-		if( o != null ) {= 
-			return o;
-		} else {
-			return null;
-		}
+		return values.get(key);
 	}
 
 	/**
@@ -284,10 +255,6 @@ public abstract class NonTerminal implements ParseObject {
 	 */
 	public Object[] getAsArray(String key) {
 		Object o = values.get(key);
-		if( o != null ) {
-			return (Object[])o;
-		} else {
-			return null;
-		}
+		return (Object[])o;
 	}
 }
