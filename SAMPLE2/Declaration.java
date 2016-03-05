@@ -8,8 +8,9 @@ public class Declaration extends NonTerminal {
 	public void interpret() throws Exception {
 		NonTerminal type = (NonTerminal)getComponent("type");
 		type.interpret();
-		put("type",type.getAsString("type"));
-		if( getAsString("type").equals("void")) {
+		put("vartype",type.getAsString("type"));
+		put("lineNo",type.getAsInt("lineNo"));
+		if( getAsString("vartype").equals("void")) {
 			throw new Exception("Cannot declare void variable at line " 
 							+ type.getAsInt("lineNo"));
 		}
@@ -24,7 +25,7 @@ public class Declaration extends NonTerminal {
 		for(ParseObject var : varlist) {
 			if( var instanceof Token) {
 				Token t = (Token)var;
-				boolean ok = st.declare(t.token(),getAsString("type"));
+				boolean ok = st.declare(t.token(),getAsString("vartype"));
 				if( !ok ) {
 					System.out.println("Error: " + t.token() 
 										+ " already declared at line " 
@@ -32,7 +33,7 @@ public class Declaration extends NonTerminal {
 				}
 			} else {
 				NonTerminal nt = (NonTerminal)var;
-				nt.put("type",getAsString("type"));
+				nt.put("vartype",getAsString("vartype"));
 				nt.execute();
 			}
 		}

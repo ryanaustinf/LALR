@@ -49,7 +49,7 @@ public class Assignment extends NonTerminal {
 	public void execute() {
 		SymbolTable st = SymbolTable.instance();
 		sub.execute();
-		String type = getAsString("type");
+		String type = getAsString("vartype");
 		String type2 = sub.getAsString("type");
 		if( type == null ) {
 			Variable v = st.get(getAsString("varname"));
@@ -61,7 +61,7 @@ public class Assignment extends NonTerminal {
 				type = v.type();
 			}
 		} else {
-			if(!st.declare(getAsString("varname"),getAsString("type"))) {
+			if(!st.declare(getAsString("varname"),getAsString("vartype"))) {
 				System.out.println("Error: " + getAsString("varname") 
 										+ " already declared at line " 
 										+ getAsInt("lineNo"));
@@ -289,6 +289,19 @@ public class Assignment extends NonTerminal {
 	}
 
 	public String toString() {
-		return getAsString("varname") + " = " + getAsObject("value");
+		if( getAsString("type").equals("array"))  {
+			String ret = "";
+			boolean first = true;
+			for( Object o : getAsArray("value") ) {
+				if( !first ) {
+					ret += ",";
+				}
+				first = false;
+				ret += o.toString();
+			}
+			return ret;
+		} else {
+			return getAsObject("value").toString();
+		}
 	}
 }

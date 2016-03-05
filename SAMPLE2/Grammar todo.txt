@@ -1,8 +1,6 @@
 func_decs,func_dec func_decs
 func_decs,
 
-code_line,if_stmt
-code_line,unless_stmt
 safe_code_line,return_stmt ;
 safe_code_line,switch_stmt
 safe_code_line,scan_stmt ;
@@ -35,15 +33,6 @@ expr5,-- varname
 expr5,varname ++
 expr5,varname --
 
-code_body,safe_code_line
-code_body,{ code }
-if_stmt,dontblink ( cond ) code_body
-if_stmt,dontblink ( cond ) code_body blinkandyouredead code_line
-if_stmt,dontblink ( cond ) code_body blinkandyouredead { code }
-unless_stmt,dontevenblink ( cond ) code_body
-unless_stmt,dontevenblink ( cond ) code_body blinkandyouredead code_line
-unless_stmt,dontevenblink ( cond ) code_body blinkandyouredead { code }
-switch_stmt,exterminate ( cond ) { switch_body }
 switch_body,case_body switch_body
 switch_body,default_body
 case_body,doctor value : code

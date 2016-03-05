@@ -70,14 +70,11 @@ public class ConcreteNonTerminalFactory implements NonTerminalFactory {
 			case "expr5":
 				return new Expr5(pattern);
 			case "code_body":
-				//return new Code_body(pattern);
-				return null;
+				return new CodeBody(pattern);
 			case "if_stmt":
-				//return new If_stmt(pattern);
-				return null;
+				return new IfStmt(pattern);
 			case "unless_stmt":
-				//return new Unless_stmt(pattern);
-				return null;
+				return new UnlessStmt(pattern);
 			case "switch_stmt":
 				//return new Switch_stmt(pattern);
 				return null;

@@ -1,7 +1,5 @@
 public class SafeCodeLine extends NonTerminal {
 	private NonTerminal code;
-	private String type;
-	private int lineNo;
 
 	public SafeCodeLine(String pattern) {
 		super("safe_code_line",pattern);
@@ -10,59 +8,53 @@ public class SafeCodeLine extends NonTerminal {
 	public void interpret() throws Exception {
 		switch(getProdString()) {
 			case "declaration ;":
-				type = "declaration";
+				put("type","declaration");
 				code = (NonTerminal)getComponent("declaration");
 				code.interpret();
+				put("lineNo",code.getAsInt("lineNo"));
 				break;
 			case "assignment ;":
-				type = "assignment";
+				put("type","assignment");
 				code = (NonTerminal)getComponent("assignment");
 				code.interpret();
+				put("lineNo",code.getAsInt("lineNo"));
 				break;
 			case "return_stmt ;":
-				type = "return";
+				put("type","return");
 				//TODO
 				break;
 			case "DELETE ;":
-				type = "break";
-				//TODO
+				put("type","break");
+				put("lineNo",((Token)getComponent("DELETE")).lineNo());
 				break;
 			case "REGENERATE ;":
-				type = "continue";
-				//TODO
+				put("type","continue");
+				put("lineNo",((Token)getComponent("REGENERATE")).lineNo());
 				break;
 			case "switch_stmt":
-				type = "switch";
+				put("type","switch");
 				//TODO
 				break;
 			case "print_stmt ;":
-				type = "print";
+				put("type","print");
 				code = (NonTerminal)getComponent("print_stmt");
 				code.interpret();
 				put("lineNo",code.getAsInt("lineNo"));
 				break;
 			case "scan_stmt ;":
 				//TODO
-				type = "scan";
+				put("type","scan");
 				break;
 			case "func_call ;":
 				//TODO
-				type = "func_call";
+				put("type","func_call");
 				break;
 			case "loop":
-				type = "loop";
+				put("type","loop");
 				//TODO
 				break;
 			default:
 		}
-	}
-
-	public int lineNo() {
-		return lineNo;
-	}
-
-	public String getType() {
-		return type;
 	}
 
 	public void execute() {

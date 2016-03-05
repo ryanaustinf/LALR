@@ -16,7 +16,7 @@ public class Code extends NonTerminal {
 				codes.add(cl);
 				Code code = (Code)getComponent("code");
 				code.interpret();
-				CodeLine[] morecodes = code.getCodes();
+				CodeLine[] morecodes = (CodeLine[])code.getAsArray("lines");
 				for(CodeLine temp: morecodes) {
 					codes.add(temp);
 				}
@@ -28,10 +28,7 @@ public class Code extends NonTerminal {
 				break;
 			default:
 		}
-	}
-
-	public CodeLine[] getCodes() {
-		return codes.toArray(new CodeLine[1]);
+		put("lines",codes.toArray(new CodeLine[0]));
 	}
 
 	public void execute() {

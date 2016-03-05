@@ -1,7 +1,6 @@
 public class CodeLine extends NonTerminal {
-	SafeCodeLine code;
+	NonTerminal code;
 	String type;
-	private int lineNo;
 
 	public CodeLine(String pattern) {
 		super("code_line",pattern);
@@ -10,25 +9,23 @@ public class CodeLine extends NonTerminal {
 	public void interpret() throws Exception {
 		switch(getProdString()) {
 			case "safe_code_line":
-				code = (SafeCodeLine)getComponent("safe_code_line");
+				code = (NonTerminal)getComponent("safe_code_line");
 				code.interpret();
-				type = code.getType();
-				lineNo = code.lineNo();
+				type = code.getAsString("type");
+				put("lineNo",code.getAsInt("lineNo"));
 				break;
 			case "if_stmt":
 				type = "if";
-				//do later
+				code = (NonTerminal)getComponent("if_stmt");
+				code.interpret();
 				break;
 			case "unless_stmt":
 				type = "unless";
-				//do later
+				code = (NonTerminal)getComponent("unless_stmt");
+				code.interpret();
 				break;
 			default:
 		}
-	}
-
-	public int lineNo() {
-		return lineNo;
 	}
 
 	public String getType() {
@@ -37,5 +34,6 @@ public class CodeLine extends NonTerminal {
 
 	public void execute() {
 		code.execute();
+		put("status",code.getAsObject("status"));
 	}
 }

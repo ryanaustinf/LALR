@@ -153,4 +153,8 @@ public class Variable {
 	public Object[] getAsArray() {
 		return (Object[])value;
 	}
+
+	public String toString() {
+		return type + " - " + value.toString();
+	}
 }

@@ -15,6 +15,9 @@ public class Expr5 extends NonTerminal {
 	public void interpret() throws Exception {
 		switch(getProdString()) {
 			case "( assignment )":
+				nt1 = (NonTerminal)getComponent("assignment");
+				nt1.interpret();
+				put("lineNo", nt1.getAsInt("lineNo"));
 				break;
 			case "( cond )":
 				nt1 = (NonTerminal)getComponent("cond");
@@ -47,7 +50,6 @@ public class Expr5 extends NonTerminal {
 	public void execute() {
 		switch(getProdString()) {
 			case "( assignment )":
-				break;
 			case "( cond )":
 				nt1.execute();
 				//fall-through

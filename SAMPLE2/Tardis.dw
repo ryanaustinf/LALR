@@ -19,8 +19,33 @@ TARDIS() {
 	demater(x); //5
 	x = x + 1 + y;
 	demater(x + x2); //109
-	clara str = "My integer is ",num = "5";
-	y = num; //"5" is cast to int
-	x = x + y; //10 + 5
+	clara str = "My integer is ", num = "5";
+	//y = num; //"5" is cast to int
+	x = x + (y = num); //10 + 5
 	demater(str + x2 + x); //
+
+	clara a = "Sir Sol", b = "Hello,";
+	a = a + b;
+	b = a - b;
+	a = a - b;
+	demater(a + " " + b);
+
+	demat("Testing assignment: ");
+	demater(y = 5);
+
+	dontblink(x > 15 ) {
+		x = x - 1;
+	} blinkandyouredead dontblink(x == 15) {
+		demater("x == 15");
+		y = y + 1;
+		demater("What is happening?");
+	} blinkandyouredead {
+		demater("x == shit");
+	}
+
+	dontevenblink(y == x / 3) {
+		demater("You made it");
+	} blinkandyouredead {
+		demater("What the fuck?!");
+	}
 }

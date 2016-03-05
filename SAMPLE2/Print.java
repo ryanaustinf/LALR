@@ -19,7 +19,9 @@ public class Print extends NonTerminal {
 				break;
 			case "demat ( assignment )":
 			case "demater ( assignment )":
-				//TODO
+				nt = (NonTerminal)getComponent("assignment");
+				nt.interpret();
+				put("lineNo",nt.getAsInt("lineNo"));
 				break;
 			default:
 		}

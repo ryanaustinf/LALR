@@ -77,7 +77,6 @@ cond4,expr < expr
 cond4,expr > expr
 cond4,expr == expr
 cond4,expr != expr
-//must be boolean
 cond4,expr
 
 expr,expr + expr2
@@ -104,12 +103,15 @@ expr5,varname array_index
 
 code_body,safe_code_line
 code_body,{ code }
+code_body,{ }
 if_stmt,dontblink ( cond ) code_body
 if_stmt,dontblink ( cond ) code_body blinkandyouredead code_line
 if_stmt,dontblink ( cond ) code_body blinkandyouredead { code }
+if_stmt,dontblink ( cond ) code_body blinkandyouredead { }
 unless_stmt,dontevenblink ( cond ) code_body
 unless_stmt,dontevenblink ( cond ) code_body blinkandyouredead code_line
 unless_stmt,dontevenblink ( cond ) code_body blinkandyouredead { code }
+unless_stmt,dontevenblink ( cond ) code_body blinkandyouredead { }
 switch_stmt,exterminate ( cond ) { switch_body }
 switch_body,case_body switch_body
 switch_body,default_body
