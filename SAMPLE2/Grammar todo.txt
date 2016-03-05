@@ -8,7 +8,6 @@ safe_code_line,func_call ;
 safe_code_line,loop
 
 print_stmt,demat ( func_call )
-print_stmt,demat ( assignment )
 
 scan_stmt,sonic ( type )
 
@@ -27,7 +26,6 @@ array_vals,cond &com; array_vals
 
 value,array
 
-expr5,( assignment )
 expr5,++ varname
 expr5,-- varname
 expr5,varname ++
