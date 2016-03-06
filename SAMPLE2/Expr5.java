@@ -93,28 +93,34 @@ public class Expr5 extends NonTerminal {
 			case "varname":
 				SymbolTable st = SymbolTable.instance();
 				Variable v = st.get(getAsString("varname"));
-				put("type",v.type());
-				switch(getAsString("type")) {
-					case "int":
-						put("value",v.getAsInt());
-						break;
-					case "float":
-						put("value",v.getAsDouble());
-						break;
-					case "char":
-						put("value",v.getAsString());
-						break;
-					case "string":
-						put("value",v.getAsString());
-						break;
-					case "boolean":
-						put("value",v.getAsBoolean());
-						break;
-					case "array":
-						put("value",v.getAsArray());
-						break;
-					default:
-				}
+				if( v == null ) {
+					System.out.println("Undeclared variable " 
+										+ getAsString("varname") + " at line " 
+										+ getAsInt("lineNo"));
+				} else {
+					put("type",v.type());
+					switch(getAsString("type")) {
+						case "int":
+							put("value",v.getAsInt());
+							break;
+						case "float":
+							put("value",v.getAsDouble());
+							break;
+						case "char":
+							put("value",v.getAsString());
+							break;
+						case "string":
+							put("value",v.getAsString());
+							break;
+						case "boolean":
+							put("value",v.getAsBoolean());
+							break;
+						case "array":
+							put("value",v.getAsArray());
+							break;
+						default:
+					}
+				} 
 				break;
 			case "++ varname":
 				break;

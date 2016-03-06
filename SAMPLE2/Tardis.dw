@@ -39,6 +39,8 @@ TARDIS() {
 		demater("x == 15");
 		y = y + 1;
 		demater("What is happening?");
+		martha nCtr = 0;
+		demater("nCtr = " + nCtr);
 	} blinkandyouredead {
 		demater("x == shit");
 	}

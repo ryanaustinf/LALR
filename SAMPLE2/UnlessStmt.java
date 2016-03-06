@@ -61,14 +61,17 @@ public class UnlessStmt extends NonTerminal {
 	}
 
 	public void execute() {
+		SymbolTable st = SymbolTable.instance();
 		NonTerminal cond = (NonTerminal)getComponent("cond");
 		cond.execute();
 		if( cond.getAsString("type").equals("boolean")) {
+			st.pushContext();
 			if( cond.getAsBoolean("value")) {
 				run(codes2);
 			} else {
 				run(codes);
 			}
+			st.popContext();
 		} else {
 			System.out.println("Illegal " + cond.getAsString("type") 
 								+ " as condition on line " 

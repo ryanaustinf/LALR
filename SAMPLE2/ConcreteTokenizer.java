@@ -313,10 +313,11 @@ public class ConcreteTokenizer implements Tokenizer {
 							&& currToken.charAt(currToken.length() - 1) 
 								== '\'') {
 					return "char";
-				} else if( currToken.matches("^([a-zH-Z][A-Za-z0-9_]*|" 
-												+ "[A-G][A-Za-z0-9_]+)$") ) {
+				} else if( currToken.matches("^[a-zA-Z][A-Za-z0-9_]*$") ) {
 					return "varname";
 				} else {
+					System.out.println("Unrecognized token " + currToken 
+										+ " at line " + lineNo);
 					return "other";
 				}
 			}
