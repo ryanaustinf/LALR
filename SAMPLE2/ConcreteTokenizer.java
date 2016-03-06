@@ -82,11 +82,12 @@ public class ConcreteTokenizer implements Tokenizer {
 						state = 8;
 						currToken = "";
 					} else {
+						addToken();
 						if( c == '\n') {
 							lineNo++;
 						}
 						i--;
-						state = 7;
+						state = 0;
 					}
 					break;
 				//in multiline comment

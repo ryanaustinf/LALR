@@ -1,7 +1,7 @@
 TARDIS() {
 	demat("Hello,\t" + " World!\nI'm the \"Doctor\"!\n");
 	//should be 66
-	demater(2 + 2 ^ (2 * 3));
+	demater(2 +2 ^ (2 * 3));
 	//should be shit
 	demater(((-1 + -1 + -1 + -1 + -1)*(4 - 1.33 - 0.33 - 4.33)
 			*(4 - 1.33 - 0.33 - 4.33)*(4 - 1.33 - 0.33 - 4.33)
