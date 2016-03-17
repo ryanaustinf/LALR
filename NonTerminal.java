@@ -39,7 +39,7 @@ public abstract class NonTerminal implements ParseObject {
 	 */
 	public void printIndent(String token) {
 		if( Driver.SHOW_TREE ) {
-			int indent = getIndent();
+			int indent = getIndent() + 1;
 			for(int i = 0; i < indent - 1; i++) {
 				// System.out.print("  ");
 				Driver.pw.print("  ");
@@ -57,7 +57,19 @@ public abstract class NonTerminal implements ParseObject {
 	 * prints the root of the parse tree's branch
 	 */
 	public void printBranch() {
-		printIndent(type());
+		if( Driver.SHOW_TREE ) {
+			int indent = getIndent();
+			for(int i = 0; i < indent - 1; i++) {
+				// System.out.print("  ");
+				Driver.pw.print("  ");
+			}
+			if( indent > 0 ) {
+				// System.out.print("|-");
+				Driver.pw.print("|-");
+			}
+			// System.out.println(token);
+			Driver.pw.println(type());
+		}
 	}
 
 	/**

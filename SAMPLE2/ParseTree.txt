@@ -1,15 +1,15 @@
 main
 |-main_func
-|-TARDIS
-|-(
-|-)
-|-{
+  |-TARDIS
+  |-(
+  |-)
+  |-{
   |-code
     |-code_line
       |-safe_code_line
         |-print_stmt
-        |-demat
-        |-(
+          |-demat
+          |-(
           |-cond
             |-cond2
               |-cond3
@@ -20,19 +20,21 @@ main
                         |-expr3
                           |-expr4
                               |-value
-                              |-"Hello,\t"
-                  |-+
+                                |-"Hello,\t"
+                    |-+
                     |-expr2
                       |-expr3
                         |-expr4
                             |-value
-                            |-" World!\nI'm the \"Doctor\"!\n"
+                              |-" World!\nI'm the \"Doctor\"!\n"
+          |-)
+        |-;
     |-code
       |-code_line
         |-safe_code_line
           |-print_stmt
-          |-demater
-          |-(
+            |-demater
+            |-(
             |-cond
               |-cond2
                 |-cond3
@@ -43,17 +45,17 @@ main
                           |-expr3
                             |-expr4
                                 |-value
-                                |-2
-                    |-+
+                                  |-2
+                      |-+
                       |-expr2
                         |-expr3
                           |-expr4
                               |-value
-                              |-2
-                        |-^
+                                |-2
+                          |-^
                           |-expr3
                             |-expr4
-                              |-(
+                                |-(
                                 |-cond
                                   |-cond2
                                     |-cond3
@@ -64,19 +66,21 @@ main
                                               |-expr3
                                                 |-expr4
                                                     |-value
-                                                    |-2
-                                          |-*
+                                                      |-2
+                                            |-*
                                             |-expr3
                                               |-expr4
                                                   |-value
-                                                  |-3
-                              |-)
+                                                    |-3
+                                |-)
+            |-)
+          |-;
       |-code
         |-code_line
           |-safe_code_line
             |-print_stmt
-            |-demater
-            |-(
+              |-demater
+              |-(
               |-cond
                 |-cond2
                   |-cond3
@@ -87,7 +91,7 @@ main
                             |-expr2
                               |-expr3
                                 |-expr4
-                                  |-(
+                                    |-(
                                     |-cond
                                       |-cond2
                                         |-cond3
@@ -106,7 +110,7 @@ main
                                                                   |-expr2
                                                                     |-expr3
                                                                       |-expr4
-                                                                        |-(
+                                                                          |-(
                                                                           |-cond
                                                                             |-cond2
                                                                               |-cond3
@@ -119,47 +123,47 @@ main
                                                                                             |-expr2
                                                                                               |-expr3
                                                                                                 |-expr4
-                                                                                                |--
+                                                                                                  |--
                                                                                                   |-expr4
                                                                                                       |-value
-                                                                                                      |-1
-                                                                                        |-+
+                                                                                                        |-1
+                                                                                          |-+
                                                                                           |-expr2
                                                                                             |-expr3
                                                                                               |-expr4
-                                                                                              |--
+                                                                                                |--
                                                                                                 |-expr4
                                                                                                     |-value
-                                                                                                    |-1
-                                                                                      |-+
+                                                                                                      |-1
+                                                                                        |-+
                                                                                         |-expr2
                                                                                           |-expr3
                                                                                             |-expr4
-                                                                                            |--
+                                                                                              |--
                                                                                               |-expr4
                                                                                                   |-value
-                                                                                                  |-1
-                                                                                    |-+
+                                                                                                    |-1
+                                                                                      |-+
                                                                                       |-expr2
                                                                                         |-expr3
                                                                                           |-expr4
-                                                                                          |--
+                                                                                            |--
                                                                                             |-expr4
                                                                                                 |-value
-                                                                                                |-1
-                                                                                  |-+
+                                                                                                  |-1
+                                                                                    |-+
                                                                                     |-expr2
                                                                                       |-expr3
                                                                                         |-expr4
-                                                                                        |--
+                                                                                          |--
                                                                                           |-expr4
                                                                                               |-value
-                                                                                              |-1
-                                                                        |-)
-                                                                |-*
+                                                                                                |-1
+                                                                          |-)
+                                                                  |-*
                                                                   |-expr3
                                                                     |-expr4
-                                                                      |-(
+                                                                        |-(
                                                                         |-cond
                                                                           |-cond2
                                                                             |-cond3
@@ -172,30 +176,30 @@ main
                                                                                           |-expr3
                                                                                             |-expr4
                                                                                                 |-value
-                                                                                                |-4
-                                                                                    |--
+                                                                                                  |-4
+                                                                                      |--
                                                                                       |-expr2
                                                                                         |-expr3
                                                                                           |-expr4
                                                                                               |-value
-                                                                                              |-1.33
-                                                                                  |--
+                                                                                                |-1.33
+                                                                                    |--
                                                                                     |-expr2
                                                                                       |-expr3
                                                                                         |-expr4
                                                                                             |-value
-                                                                                            |-0.33
-                                                                                |--
+                                                                                              |-0.33
+                                                                                  |--
                                                                                   |-expr2
                                                                                     |-expr3
                                                                                       |-expr4
                                                                                           |-value
-                                                                                          |-4.33
-                                                                      |-)
-                                                              |-*
+                                                                                            |-4.33
+                                                                        |-)
+                                                                |-*
                                                                 |-expr3
                                                                   |-expr4
-                                                                    |-(
+                                                                      |-(
                                                                       |-cond
                                                                         |-cond2
                                                                           |-cond3
@@ -208,30 +212,30 @@ main
                                                                                         |-expr3
                                                                                           |-expr4
                                                                                               |-value
-                                                                                              |-4
-                                                                                  |--
+                                                                                                |-4
+                                                                                    |--
                                                                                     |-expr2
                                                                                       |-expr3
                                                                                         |-expr4
                                                                                             |-value
-                                                                                            |-1.33
-                                                                                |--
+                                                                                              |-1.33
+                                                                                  |--
                                                                                   |-expr2
                                                                                     |-expr3
                                                                                       |-expr4
                                                                                           |-value
-                                                                                          |-0.33
-                                                                              |--
+                                                                                            |-0.33
+                                                                                |--
                                                                                 |-expr2
                                                                                   |-expr3
                                                                                     |-expr4
                                                                                         |-value
-                                                                                        |-4.33
-                                                                    |-)
-                                                            |-*
+                                                                                          |-4.33
+                                                                      |-)
+                                                              |-*
                                                               |-expr3
                                                                 |-expr4
-                                                                  |-(
+                                                                    |-(
                                                                     |-cond
                                                                       |-cond2
                                                                         |-cond3
@@ -244,30 +248,30 @@ main
                                                                                       |-expr3
                                                                                         |-expr4
                                                                                             |-value
-                                                                                            |-4
-                                                                                |--
+                                                                                              |-4
+                                                                                  |--
                                                                                   |-expr2
                                                                                     |-expr3
                                                                                       |-expr4
                                                                                           |-value
-                                                                                          |-1.33
-                                                                              |--
+                                                                                            |-1.33
+                                                                                |--
                                                                                 |-expr2
                                                                                   |-expr3
                                                                                     |-expr4
                                                                                         |-value
-                                                                                        |-0.33
-                                                                            |--
+                                                                                          |-0.33
+                                                                              |--
                                                                               |-expr2
                                                                                 |-expr3
                                                                                   |-expr4
                                                                                       |-value
-                                                                                      |-4.33
-                                                                  |-)
-                                                          |-*
+                                                                                        |-4.33
+                                                                    |-)
+                                                            |-*
                                                             |-expr3
                                                               |-expr4
-                                                                |-(
+                                                                  |-(
                                                                   |-cond
                                                                     |-cond2
                                                                       |-cond3
@@ -280,30 +284,30 @@ main
                                                                                     |-expr3
                                                                                       |-expr4
                                                                                           |-value
-                                                                                          |-4
-                                                                              |--
+                                                                                            |-4
+                                                                                |--
                                                                                 |-expr2
                                                                                   |-expr3
                                                                                     |-expr4
                                                                                         |-value
-                                                                                        |-1.33
-                                                                            |--
+                                                                                          |-1.33
+                                                                              |--
                                                                               |-expr2
                                                                                 |-expr3
                                                                                   |-expr4
                                                                                       |-value
-                                                                                      |-0.33
-                                                                          |--
+                                                                                        |-0.33
+                                                                            |--
                                                                             |-expr2
                                                                               |-expr3
                                                                                 |-expr4
                                                                                     |-value
-                                                                                    |-4.33
-                                                                |-)
-                                                        |-*
+                                                                                      |-4.33
+                                                                  |-)
+                                                          |-*
                                                           |-expr3
                                                             |-expr4
-                                                              |-(
+                                                                |-(
                                                                 |-cond
                                                                   |-cond2
                                                                     |-cond3
@@ -316,30 +320,30 @@ main
                                                                                   |-expr3
                                                                                     |-expr4
                                                                                         |-value
-                                                                                        |-4
-                                                                            |--
+                                                                                          |-4
+                                                                              |--
                                                                               |-expr2
                                                                                 |-expr3
                                                                                   |-expr4
                                                                                       |-value
-                                                                                      |-1.33
-                                                                          |--
+                                                                                        |-1.33
+                                                                            |--
                                                                             |-expr2
                                                                               |-expr3
                                                                                 |-expr4
                                                                                     |-value
-                                                                                    |-0.33
-                                                                        |--
+                                                                                      |-0.33
+                                                                          |--
                                                                           |-expr2
                                                                             |-expr3
                                                                               |-expr4
                                                                                   |-value
-                                                                                  |-4.33
-                                                              |-)
-                                                      |-*
+                                                                                    |-4.33
+                                                                |-)
+                                                        |-*
                                                         |-expr3
                                                           |-expr4
-                                                            |-(
+                                                              |-(
                                                               |-cond
                                                                 |-cond2
                                                                   |-cond3
@@ -352,30 +356,30 @@ main
                                                                                 |-expr3
                                                                                   |-expr4
                                                                                       |-value
-                                                                                      |-4
-                                                                          |--
+                                                                                        |-4
+                                                                            |--
                                                                             |-expr2
                                                                               |-expr3
                                                                                 |-expr4
                                                                                     |-value
-                                                                                    |-1.33
-                                                                        |--
+                                                                                      |-1.33
+                                                                          |--
                                                                           |-expr2
                                                                             |-expr3
                                                                               |-expr4
                                                                                   |-value
-                                                                                  |-0.33
-                                                                      |--
+                                                                                    |-0.33
+                                                                        |--
                                                                         |-expr2
                                                                           |-expr3
                                                                             |-expr4
                                                                                 |-value
-                                                                                |-4.33
-                                                            |-)
-                                                    |-*
+                                                                                  |-4.33
+                                                              |-)
+                                                      |-*
                                                       |-expr3
                                                         |-expr4
-                                                          |-(
+                                                            |-(
                                                             |-cond
                                                               |-cond2
                                                                 |-cond3
@@ -388,30 +392,30 @@ main
                                                                               |-expr3
                                                                                 |-expr4
                                                                                     |-value
-                                                                                    |-4
-                                                                        |--
+                                                                                      |-4
+                                                                          |--
                                                                           |-expr2
                                                                             |-expr3
                                                                               |-expr4
                                                                                   |-value
-                                                                                  |-1.33
-                                                                      |--
+                                                                                    |-1.33
+                                                                        |--
                                                                         |-expr2
                                                                           |-expr3
                                                                             |-expr4
                                                                                 |-value
-                                                                                |-0.33
-                                                                    |--
+                                                                                  |-0.33
+                                                                      |--
                                                                       |-expr2
                                                                         |-expr3
                                                                           |-expr4
                                                                               |-value
-                                                                              |-4.33
-                                                          |-)
-                                                  |-*
+                                                                                |-4.33
+                                                            |-)
+                                                    |-*
                                                     |-expr3
                                                       |-expr4
-                                                        |-(
+                                                          |-(
                                                           |-cond
                                                             |-cond2
                                                               |-cond3
@@ -424,30 +428,30 @@ main
                                                                             |-expr3
                                                                               |-expr4
                                                                                   |-value
-                                                                                  |-4
-                                                                      |--
+                                                                                    |-4
+                                                                        |--
                                                                         |-expr2
                                                                           |-expr3
                                                                             |-expr4
                                                                                 |-value
-                                                                                |-1.33
-                                                                    |--
+                                                                                  |-1.33
+                                                                      |--
                                                                       |-expr2
                                                                         |-expr3
                                                                           |-expr4
                                                                               |-value
-                                                                              |-0.33
-                                                                  |--
+                                                                                |-0.33
+                                                                    |--
                                                                     |-expr2
                                                                       |-expr3
                                                                         |-expr4
                                                                             |-value
-                                                                            |-4.33
-                                                        |-)
-                                                |-*
+                                                                              |-4.33
+                                                          |-)
+                                                  |-*
                                                   |-expr3
                                                     |-expr4
-                                                      |-(
+                                                        |-(
                                                         |-cond
                                                           |-cond2
                                                             |-cond3
@@ -460,30 +464,30 @@ main
                                                                           |-expr3
                                                                             |-expr4
                                                                                 |-value
-                                                                                |-4
-                                                                    |--
+                                                                                  |-4
+                                                                      |--
                                                                       |-expr2
                                                                         |-expr3
                                                                           |-expr4
                                                                               |-value
-                                                                              |-1.33
-                                                                  |--
+                                                                                |-1.33
+                                                                    |--
                                                                     |-expr2
                                                                       |-expr3
                                                                         |-expr4
                                                                             |-value
-                                                                            |-0.33
-                                                                |--
+                                                                              |-0.33
+                                                                  |--
                                                                   |-expr2
                                                                     |-expr3
                                                                       |-expr4
                                                                           |-value
-                                                                          |-4.33
-                                                      |-)
-                                              |-*
+                                                                            |-4.33
+                                                        |-)
+                                                |-*
                                                 |-expr3
                                                   |-expr4
-                                                    |-(
+                                                      |-(
                                                       |-cond
                                                         |-cond2
                                                           |-cond3
@@ -496,44 +500,44 @@ main
                                                                         |-expr3
                                                                           |-expr4
                                                                               |-value
-                                                                              |-4
-                                                                  |--
+                                                                                |-4
+                                                                    |--
                                                                     |-expr2
                                                                       |-expr3
                                                                         |-expr4
                                                                             |-value
-                                                                            |-1.33
-                                                                |--
+                                                                              |-1.33
+                                                                  |--
                                                                   |-expr2
                                                                     |-expr3
                                                                       |-expr4
                                                                           |-value
-                                                                          |-0.33
-                                                              |--
+                                                                            |-0.33
+                                                                |--
                                                                 |-expr2
                                                                   |-expr3
                                                                     |-expr4
                                                                         |-value
-                                                                        |-4.33
-                                                    |-)
-                                  |-)
-                          |-*
+                                                                          |-4.33
+                                                      |-)
+                                    |-)
+                            |-*
                             |-expr3
                               |-expr4
-                              |--
+                                |--
                                 |-expr4
                                     |-value
-                                    |-2
-                      |-+
+                                      |-2
+                        |-+
                         |-expr2
                           |-expr3
                             |-expr4
                                 |-value
-                                |-2
-                          |-^
+                                  |-2
+                            |-^
                             |-expr3
                               |-expr4
-                                |-(
+                                  |-(
                                   |-cond
                                     |-cond2
                                       |-cond3
@@ -544,19 +548,21 @@ main
                                                 |-expr3
                                                   |-expr4
                                                       |-value
-                                                      |-2
-                                            |-*
+                                                        |-2
+                                              |-*
                                               |-expr3
                                                 |-expr4
                                                     |-value
-                                                    |-3
-                                |-)
+                                                      |-3
+                                  |-)
+              |-)
+            |-;
         |-code
           |-code_line
             |-safe_code_line
               |-print_stmt
-              |-demater
-              |-(
+                |-demater
+                |-(
                 |-cond
                   |-cond2
                     |-cond3
@@ -567,19 +573,21 @@ main
                               |-expr3
                                 |-expr4
                                     |-value
-                                    |-"FUCK EVERYTHING"
-                        |--
+                                      |-"FUCK EVERYTHING"
+                          |--
                           |-expr2
                             |-expr3
                               |-expr4
                                   |-value
-                                  |-"VER"
+                                    |-"VER"
+                |-)
+              |-;
           |-code
             |-code_line
               |-safe_code_line
                 |-print_stmt
-                |-demater
-                |-(
+                  |-demater
+                  |-(
                   |-cond
                     |-cond2
                       |-cond3
@@ -588,19 +596,19 @@ main
                             |-expr2
                               |-expr3
                                 |-expr4
-                                  |-(
+                                    |-(
                                     |-cond
                                       |-cond
                                         |-cond2
                                           |-cond3
-                                          |-!
+                                            |-!
                                             |-cond3
                                               |-cond4
                                                 |-expr
                                                   |-expr2
                                                     |-expr3
                                                       |-expr4
-                                                        |-(
+                                                          |-(
                                                           |-cond
                                                             |-cond2
                                                               |-cond3
@@ -610,16 +618,16 @@ main
                                                                       |-expr3
                                                                         |-expr4
                                                                             |-value
-                                                                            |-4
-                                                                |-==
+                                                                              |-4
+                                                                  |-==
                                                                   |-expr
                                                                     |-expr2
                                                                       |-expr3
                                                                         |-expr4
                                                                             |-value
-                                                                            |-4
-                                                        |-)
-                                    |-||
+                                                                              |-4
+                                                          |-)
+                                      |-||
                                       |-cond2
                                         |-cond3
                                           |-cond4
@@ -628,21 +636,23 @@ main
                                                 |-expr3
                                                   |-expr4
                                                       |-value
-                                                      |-3
-                                          |-!=
+                                                        |-3
+                                            |-!=
                                             |-expr
                                               |-expr2
                                                 |-expr3
                                                   |-expr4
                                                       |-value
-                                                      |-2
-                                  |-)
+                                                        |-2
+                                    |-)
+                  |-)
+                |-;
             |-code
               |-code_line
                 |-safe_code_line
                   |-print_stmt
-                  |-demater
-                  |-(
+                    |-demater
+                    |-(
                     |-cond
                       |-cond2
                         |-cond3
@@ -651,7 +661,7 @@ main
                               |-expr2
                                 |-expr3
                                   |-expr4
-                                    |-(
+                                      |-(
                                       |-cond
                                         |-cond2
                                           |-cond2
@@ -662,8 +672,8 @@ main
                                                     |-expr3
                                                       |-expr4
                                                           |-value
-                                                          |-true
-                                        |-&&
+                                                            |-true
+                                          |-&&
                                           |-cond3
                                             |-cond4
                                               |-expr
@@ -671,16 +681,20 @@ main
                                                   |-expr3
                                                     |-expr4
                                                         |-value
-                                                        |-false
-                                    |-)
+                                                          |-false
+                                      |-)
+                    |-)
+                  |-;
               |-code
                 |-code_line
                   |-safe_code_line
                     |-declaration
+                      |-type
+                        |-martha
                       |-var_list
                         |-assignment
-                        |-x
-                        |-=
+                          |-x
+                          |-=
                           |-cond
                             |-cond2
                               |-cond3
@@ -690,12 +704,12 @@ main
                                       |-expr3
                                         |-expr4
                                             |-value
-                                            |-"5"
-                      |-,
+                                              |-"5"
+                        |-,
                         |-var_list
                           |-assignment
-                          |-y
-                          |-=
+                            |-y
+                            |-=
                             |-cond
                               |-cond2
                                 |-cond3
@@ -705,15 +719,18 @@ main
                                         |-expr3
                                           |-expr4
                                               |-value
-                                              |-4
+                                                |-4
+                    |-;
                 |-code
                   |-code_line
                     |-safe_code_line
                       |-declaration
+                        |-type
+                          |-amy
                         |-var_list
                           |-assignment
-                          |-x2
-                          |-=
+                            |-x2
+                            |-=
                             |-cond
                               |-cond2
                                 |-cond3
@@ -723,13 +740,14 @@ main
                                         |-expr3
                                           |-expr4
                                               |-value
-                                              |-'c'
+                                                |-'c'
+                      |-;
                   |-code
                     |-code_line
                       |-safe_code_line
                         |-print_stmt
-                        |-demater
-                        |-(
+                          |-demater
+                          |-(
                           |-cond
                             |-cond2
                               |-cond3
@@ -738,13 +756,15 @@ main
                                     |-expr2
                                       |-expr3
                                         |-expr4
-                                          |-x
+                                            |-x
+                          |-)
+                        |-;
                     |-code
                       |-code_line
                         |-safe_code_line
                           |-assignment
-                          |-x
-                          |-=
+                            |-x
+                            |-=
                             |-cond
                               |-cond2
                                 |-cond3
@@ -755,24 +775,25 @@ main
                                           |-expr2
                                             |-expr3
                                               |-expr4
-                                                |-x
-                                      |-+
+                                                  |-x
+                                        |-+
                                         |-expr2
                                           |-expr3
                                             |-expr4
                                                 |-value
-                                                |-1
-                                    |-+
+                                                  |-1
+                                      |-+
                                       |-expr2
                                         |-expr3
                                           |-expr4
-                                            |-y
+                                              |-y
+                          |-;
                       |-code
                         |-code_line
                           |-safe_code_line
                             |-print_stmt
-                            |-demater
-                            |-(
+                              |-demater
+                              |-(
                               |-cond
                                 |-cond2
                                   |-cond3
@@ -782,20 +803,24 @@ main
                                           |-expr2
                                             |-expr3
                                               |-expr4
-                                                |-x
-                                      |-+
+                                                  |-x
+                                        |-+
                                         |-expr2
                                           |-expr3
                                             |-expr4
-                                              |-x2
+                                                |-x2
+                              |-)
+                            |-;
                         |-code
                           |-code_line
                             |-safe_code_line
                               |-declaration
+                                |-type
+                                  |-clara
                                 |-var_list
                                   |-assignment
-                                  |-str
-                                  |-=
+                                    |-str
+                                    |-=
                                     |-cond
                                       |-cond2
                                         |-cond3
@@ -805,12 +830,12 @@ main
                                                 |-expr3
                                                   |-expr4
                                                       |-value
-                                                      |-"My integer is "
-                                |-,
+                                                        |-"My integer is "
+                                  |-,
                                   |-var_list
                                     |-assignment
-                                    |-num
-                                    |-=
+                                      |-num
+                                      |-=
                                       |-cond
                                         |-cond2
                                           |-cond3
@@ -820,13 +845,14 @@ main
                                                   |-expr3
                                                     |-expr4
                                                         |-value
-                                                        |-"5"
+                                                          |-"5"
+                              |-;
                           |-code
                             |-code_line
                               |-safe_code_line
                                 |-assignment
-                                |-x
-                                |-=
+                                  |-x
+                                  |-=
                                   |-cond
                                     |-cond2
                                       |-cond3
@@ -836,15 +862,15 @@ main
                                               |-expr2
                                                 |-expr3
                                                   |-expr4
-                                                    |-x
-                                          |-+
+                                                      |-x
+                                            |-+
                                             |-expr2
                                               |-expr3
                                                 |-expr4
-                                                  |-(
+                                                    |-(
                                                     |-assignment
-                                                    |-y
-                                                    |-=
+                                                      |-y
+                                                      |-=
                                                       |-cond
                                                         |-cond2
                                                           |-cond3
@@ -853,14 +879,15 @@ main
                                                                 |-expr2
                                                                   |-expr3
                                                                     |-expr4
-                                                                      |-num
-                                                  |-)
+                                                                        |-num
+                                                    |-)
+                                |-;
                             |-code
                               |-code_line
                                 |-safe_code_line
                                   |-print_stmt
-                                  |-demater
-                                  |-(
+                                    |-demater
+                                    |-(
                                     |-cond
                                       |-cond2
                                         |-cond3
@@ -871,25 +898,29 @@ main
                                                   |-expr2
                                                     |-expr3
                                                       |-expr4
-                                                        |-str
-                                              |-+
+                                                          |-str
+                                                |-+
                                                 |-expr2
                                                   |-expr3
                                                     |-expr4
-                                                      |-x2
-                                            |-+
+                                                        |-x2
+                                              |-+
                                               |-expr2
                                                 |-expr3
                                                   |-expr4
-                                                    |-x
+                                                      |-x
+                                    |-)
+                                  |-;
                               |-code
                                 |-code_line
                                   |-safe_code_line
                                     |-declaration
+                                      |-type
+                                        |-clara
                                       |-var_list
                                         |-assignment
-                                        |-a
-                                        |-=
+                                          |-a
+                                          |-=
                                           |-cond
                                             |-cond2
                                               |-cond3
@@ -899,12 +930,12 @@ main
                                                       |-expr3
                                                         |-expr4
                                                             |-value
-                                                            |-"Sir Sol"
-                                      |-,
+                                                              |-"Sir Sol"
+                                        |-,
                                         |-var_list
                                           |-assignment
-                                          |-b
-                                          |-=
+                                            |-b
+                                            |-=
                                             |-cond
                                               |-cond2
                                                 |-cond3
@@ -914,13 +945,14 @@ main
                                                         |-expr3
                                                           |-expr4
                                                               |-value
-                                                              |-"Hello,"
+                                                                |-"Hello,"
+                                    |-;
                                 |-code
                                   |-code_line
                                     |-safe_code_line
                                       |-assignment
-                                      |-a
-                                      |-=
+                                        |-a
+                                        |-=
                                         |-cond
                                           |-cond2
                                             |-cond3
@@ -930,18 +962,19 @@ main
                                                     |-expr2
                                                       |-expr3
                                                         |-expr4
-                                                          |-a
-                                                |-+
+                                                            |-a
+                                                  |-+
                                                   |-expr2
                                                     |-expr3
                                                       |-expr4
-                                                        |-b
+                                                          |-b
+                                      |-;
                                   |-code
                                     |-code_line
                                       |-safe_code_line
                                         |-assignment
-                                        |-b
-                                        |-=
+                                          |-b
+                                          |-=
                                           |-cond
                                             |-cond2
                                               |-cond3
@@ -951,18 +984,19 @@ main
                                                       |-expr2
                                                         |-expr3
                                                           |-expr4
-                                                            |-a
-                                                  |--
+                                                              |-a
+                                                    |--
                                                     |-expr2
                                                       |-expr3
                                                         |-expr4
-                                                          |-b
+                                                            |-b
+                                        |-;
                                     |-code
                                       |-code_line
                                         |-safe_code_line
                                           |-assignment
-                                          |-a
-                                          |-=
+                                            |-a
+                                            |-=
                                             |-cond
                                               |-cond2
                                                 |-cond3
@@ -972,18 +1006,19 @@ main
                                                         |-expr2
                                                           |-expr3
                                                             |-expr4
-                                                              |-a
-                                                    |--
+                                                                |-a
+                                                      |--
                                                       |-expr2
                                                         |-expr3
                                                           |-expr4
-                                                            |-b
+                                                              |-b
+                                          |-;
                                       |-code
                                         |-code_line
                                           |-safe_code_line
                                             |-print_stmt
-                                            |-demater
-                                            |-(
+                                              |-demater
+                                              |-(
                                               |-cond
                                                 |-cond2
                                                   |-cond3
@@ -994,24 +1029,26 @@ main
                                                             |-expr2
                                                               |-expr3
                                                                 |-expr4
-                                                                  |-a
-                                                        |-+
+                                                                    |-a
+                                                          |-+
                                                           |-expr2
                                                             |-expr3
                                                               |-expr4
                                                                   |-value
-                                                                  |-" "
-                                                      |-+
+                                                                    |-" "
+                                                        |-+
                                                         |-expr2
                                                           |-expr3
                                                             |-expr4
-                                                              |-b
+                                                                |-b
+                                              |-)
+                                            |-;
                                         |-code
                                           |-code_line
                                             |-safe_code_line
                                               |-print_stmt
-                                              |-demat
-                                              |-(
+                                                |-demat
+                                                |-(
                                                 |-cond
                                                   |-cond2
                                                     |-cond3
@@ -1021,16 +1058,18 @@ main
                                                             |-expr3
                                                               |-expr4
                                                                   |-value
-                                                                  |-"Testing assignment: "
+                                                                    |-"Testing assignment: "
+                                                |-)
+                                              |-;
                                           |-code
                                             |-code_line
                                               |-safe_code_line
                                                 |-print_stmt
-                                                |-demater
-                                                |-(
+                                                  |-demater
+                                                  |-(
                                                   |-assignment
-                                                  |-y
-                                                  |-=
+                                                    |-y
+                                                    |-=
                                                     |-cond
                                                       |-cond2
                                                         |-cond3
@@ -1040,12 +1079,14 @@ main
                                                                 |-expr3
                                                                   |-expr4
                                                                       |-value
-                                                                      |-5
+                                                                        |-5
+                                                  |-)
+                                                |-;
                                             |-code
                                               |-code_line
                                                 |-if_stmt
-                                                |-dontblink
-                                                |-(
+                                                  |-dontblink
+                                                  |-(
                                                   |-cond
                                                     |-cond2
                                                       |-cond3
@@ -1054,23 +1095,23 @@ main
                                                             |-expr2
                                                               |-expr3
                                                                 |-expr4
-                                                                  |-x
-                                                        |->
+                                                                    |-x
+                                                          |->
                                                           |-expr
                                                             |-expr2
                                                               |-expr3
                                                                 |-expr4
                                                                     |-value
-                                                                    |-15
-                                                |-)
+                                                                      |-15
+                                                  |-)
                                                   |-code_body
-                                                  |-{
+                                                    |-{
                                                     |-code
                                                       |-code_line
                                                         |-safe_code_line
                                                           |-assignment
-                                                          |-x
-                                                          |-=
+                                                            |-x
+                                                            |-=
                                                             |-cond
                                                               |-cond2
                                                                 |-cond3
@@ -1080,19 +1121,20 @@ main
                                                                         |-expr2
                                                                           |-expr3
                                                                             |-expr4
-                                                                              |-x
-                                                                    |--
+                                                                                |-x
+                                                                      |--
                                                                       |-expr2
                                                                         |-expr3
                                                                           |-expr4
                                                                               |-value
-                                                                              |-1
-                                                  |-}
-                                                |-blinkandyouredead
+                                                                                |-1
+                                                          |-;
+                                                    |-}
+                                                  |-blinkandyouredead
                                                   |-code_line
                                                     |-if_stmt
-                                                    |-dontblink
-                                                    |-(
+                                                      |-dontblink
+                                                      |-(
                                                       |-cond
                                                         |-cond2
                                                           |-cond3
@@ -1101,23 +1143,23 @@ main
                                                                 |-expr2
                                                                   |-expr3
                                                                     |-expr4
-                                                                      |-x
-                                                            |-==
+                                                                        |-x
+                                                              |-==
                                                               |-expr
                                                                 |-expr2
                                                                   |-expr3
                                                                     |-expr4
                                                                         |-value
-                                                                        |-15
-                                                    |-)
+                                                                          |-15
+                                                      |-)
                                                       |-code_body
-                                                      |-{
+                                                        |-{
                                                         |-code
                                                           |-code_line
                                                             |-safe_code_line
                                                               |-print_stmt
-                                                              |-demater
-                                                              |-(
+                                                                |-demater
+                                                                |-(
                                                                 |-cond
                                                                   |-cond2
                                                                     |-cond3
@@ -1127,13 +1169,15 @@ main
                                                                             |-expr3
                                                                               |-expr4
                                                                                   |-value
-                                                                                  |-"x == 15"
+                                                                                    |-"x == 15"
+                                                                |-)
+                                                              |-;
                                                           |-code
                                                             |-code_line
                                                               |-safe_code_line
                                                                 |-assignment
-                                                                |-y
-                                                                |-=
+                                                                  |-y
+                                                                  |-=
                                                                   |-cond
                                                                     |-cond2
                                                                       |-cond3
@@ -1143,19 +1187,20 @@ main
                                                                               |-expr2
                                                                                 |-expr3
                                                                                   |-expr4
-                                                                                    |-y
-                                                                          |-+
+                                                                                      |-y
+                                                                            |-+
                                                                             |-expr2
                                                                               |-expr3
                                                                                 |-expr4
                                                                                     |-value
-                                                                                    |-1
+                                                                                      |-1
+                                                                |-;
                                                             |-code
                                                               |-code_line
                                                                 |-safe_code_line
                                                                   |-print_stmt
-                                                                  |-demater
-                                                                  |-(
+                                                                    |-demater
+                                                                    |-(
                                                                     |-cond
                                                                       |-cond2
                                                                         |-cond3
@@ -1165,15 +1210,19 @@ main
                                                                                 |-expr3
                                                                                   |-expr4
                                                                                       |-value
-                                                                                      |-"What is happening?"
+                                                                                        |-"What is happening?"
+                                                                    |-)
+                                                                  |-;
                                                               |-code
                                                                 |-code_line
                                                                   |-safe_code_line
                                                                     |-declaration
+                                                                      |-type
+                                                                        |-martha
                                                                       |-var_list
                                                                         |-assignment
-                                                                        |-nCtr
-                                                                        |-=
+                                                                          |-nCtr
+                                                                          |-=
                                                                           |-cond
                                                                             |-cond2
                                                                               |-cond3
@@ -1183,13 +1232,14 @@ main
                                                                                       |-expr3
                                                                                         |-expr4
                                                                                             |-value
-                                                                                            |-0
+                                                                                              |-0
+                                                                    |-;
                                                                 |-code
                                                                   |-code_line
                                                                     |-safe_code_line
                                                                       |-print_stmt
-                                                                      |-demater
-                                                                      |-(
+                                                                        |-demater
+                                                                        |-(
                                                                         |-cond
                                                                           |-cond2
                                                                             |-cond3
@@ -1200,21 +1250,23 @@ main
                                                                                       |-expr3
                                                                                         |-expr4
                                                                                             |-value
-                                                                                            |-"nCtr = "
-                                                                                |-+
+                                                                                              |-"nCtr = "
+                                                                                  |-+
                                                                                   |-expr2
                                                                                     |-expr3
                                                                                       |-expr4
-                                                                                        |-nCtr
-                                                      |-}
-                                                    |-blinkandyouredead
-                                                    |-{
+                                                                                          |-nCtr
+                                                                        |-)
+                                                                      |-;
+                                                        |-}
+                                                      |-blinkandyouredead
+                                                      |-{
                                                       |-code
                                                         |-code_line
                                                           |-safe_code_line
                                                             |-print_stmt
-                                                            |-demater
-                                                            |-(
+                                                              |-demater
+                                                              |-(
                                                               |-cond
                                                                 |-cond2
                                                                   |-cond3
@@ -1224,13 +1276,15 @@ main
                                                                           |-expr3
                                                                             |-expr4
                                                                                 |-value
-                                                                                |-"x == shit"
-                                                    |-}
+                                                                                  |-"x == shit"
+                                                              |-)
+                                                            |-;
+                                                      |-}
                                               |-code
                                                 |-code_line
                                                   |-unless_stmt
-                                                  |-dontevenblink
-                                                  |-(
+                                                    |-dontevenblink
+                                                    |-(
                                                     |-cond
                                                       |-cond2
                                                         |-cond3
@@ -1239,28 +1293,28 @@ main
                                                               |-expr2
                                                                 |-expr3
                                                                   |-expr4
-                                                                    |-y
-                                                          |-==
+                                                                      |-y
+                                                            |-==
                                                             |-expr
                                                               |-expr2
                                                                 |-expr2
                                                                   |-expr3
                                                                     |-expr4
-                                                                      |-x
-                                                              |-/
+                                                                        |-x
+                                                                |-/
                                                                 |-expr3
                                                                   |-expr4
                                                                       |-value
-                                                                      |-3
-                                                  |-)
+                                                                        |-3
+                                                    |-)
                                                     |-code_body
-                                                    |-{
+                                                      |-{
                                                       |-code
                                                         |-code_line
                                                           |-safe_code_line
                                                             |-print_stmt
-                                                            |-demater
-                                                            |-(
+                                                              |-demater
+                                                              |-(
                                                               |-cond
                                                                 |-cond2
                                                                   |-cond3
@@ -1270,16 +1324,18 @@ main
                                                                           |-expr3
                                                                             |-expr4
                                                                                 |-value
-                                                                                |-"You made it"
-                                                    |-}
-                                                  |-blinkandyouredead
-                                                  |-{
+                                                                                  |-"You made it"
+                                                              |-)
+                                                            |-;
+                                                      |-}
+                                                    |-blinkandyouredead
+                                                    |-{
                                                     |-code
                                                       |-code_line
                                                         |-safe_code_line
                                                           |-print_stmt
-                                                          |-demater
-                                                          |-(
+                                                            |-demater
+                                                            |-(
                                                             |-cond
                                                               |-cond2
                                                                 |-cond3
@@ -1289,6 +1345,8 @@ main
                                                                         |-expr3
                                                                           |-expr4
                                                                               |-value
-                                                                              |-"What the fuck?!"
-                                                  |-}
-|-}
+                                                                                |-"What the fuck?!"
+                                                            |-)
+                                                          |-;
+                                                    |-}
+  |-}

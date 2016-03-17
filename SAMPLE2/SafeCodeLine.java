@@ -16,6 +16,7 @@ public class SafeCodeLine extends NonTerminal {
 				propagate(code);
 				code.interpret();
 				put("lineNo",code.getAsInt("lineNo"));
+				printIndent(";");
 				break;
 			case "assignment ;":
 				put("type","assignment");
@@ -23,9 +24,11 @@ public class SafeCodeLine extends NonTerminal {
 				propagate(code);
 				code.interpret();
 				put("lineNo",code.getAsInt("lineNo"));
+				printIndent(";");
 				break;
 			case "return_stmt ;":
 				put("type","return");
+				printIndent(";");
 				//TODO
 				break;
 			case "DELETE ;":
@@ -49,15 +52,18 @@ public class SafeCodeLine extends NonTerminal {
 				code = (NonTerminal)getComponent("print_stmt");
 				propagate(code);
 				code.interpret();
+				printIndent(";");
 				put("lineNo",code.getAsInt("lineNo"));
 				break;
 			case "scan_stmt ;":
 				//TODO
 				put("type","scan");
+				printIndent(";");
 				break;
 			case "func_call ;":
 				//TODO
 				put("type","func_call");
+				printIndent(";");
 				break;
 			case "loop":
 				put("type","loop");

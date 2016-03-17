@@ -43,6 +43,7 @@ public class Print extends NonTerminal {
 				break;
 			default:
 		}
+		printIndent(")");
 	}
 
 	public void execute() {

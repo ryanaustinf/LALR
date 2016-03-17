@@ -4,6 +4,8 @@ public class Type extends NonTerminal {
 	}
 
 	public void interpret() throws Exception {
+		printBranch();
+		printIndent(getProdString());
 		switch(getProdString()) {
 			case "rose":
 				put("lineNo",((Token)getComponent("rose")).lineNo());
