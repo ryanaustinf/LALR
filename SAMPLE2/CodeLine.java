@@ -7,9 +7,11 @@ public class CodeLine extends NonTerminal {
 	}
 
 	public void interpret() throws Exception {
+		printBranch();
 		switch(getProdString()) {
 			case "safe_code_line":
 				code = (NonTerminal)getComponent("safe_code_line");
+				propagate(code);
 				code.interpret();
 				type = code.getAsString("type");
 				put("lineNo",code.getAsInt("lineNo"));
@@ -17,11 +19,13 @@ public class CodeLine extends NonTerminal {
 			case "if_stmt":
 				type = "if";
 				code = (NonTerminal)getComponent("if_stmt");
+				propagate(code);
 				code.interpret();
 				break;
 			case "unless_stmt":
 				type = "unless";
 				code = (NonTerminal)getComponent("unless_stmt");
+				propagate(code);
 				code.interpret();
 				break;
 			default:

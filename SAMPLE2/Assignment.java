@@ -7,37 +7,56 @@ public class Assignment extends NonTerminal {
 	}
 
 	public void interpret() throws Exception {
+		printBranch();
 		put("varname",((Token)getComponent("varname")).token());
 		put("lineNo",((Token)getComponent("varname")).lineNo());
 		switch(getProdString()) {
 			case "varname = assignment":
+				printIndent(((Token)getComponent("varname")).token());
+				printIndent("=");
 				sub = (NonTerminal)getComponent("assignment");
+				propagate(sub);
 				sub.interpret();
 				array = false;
 				break;
 			case "varname = cond":
+				printIndent(((Token)getComponent("varname")).token());
+				printIndent("=");
 				sub = (NonTerminal)getComponent("cond");
+				propagate(sub);
 				sub.interpret();
 				array = false;
 				break;
 			case "varname = func_call":
+				printIndent(((Token)getComponent("varname")).token());
+				printIndent("=");
 				sub = (NonTerminal)getComponent("func_call");
+				propagate(sub);
 				sub.interpret();
 				array = false;
 				//TODO
 				break;
 			case "varname array_index = assignment":
+				printIndent(((Token)getComponent("varname")).token());
+				printIndent("=");
 				sub = (NonTerminal)getComponent("assignment");
+				propagate(sub);
 				sub.interpret();
 				array = true;
 				break;
 			case "varname array_index = cond":
+				printIndent(((Token)getComponent("varname")).token());
+				printIndent("=");
 				sub = (NonTerminal)getComponent("cond");
+				propagate(sub);
 				sub.interpret();
 				array = true;
 				break;
 			case "varname array_index = func_call":
+				printIndent(((Token)getComponent("varname")).token());
+				printIndent("=");
 				sub = (NonTerminal)getComponent("func_call");
+				propagate(sub);
 				sub.interpret();
 				array = true;
 				//TODO

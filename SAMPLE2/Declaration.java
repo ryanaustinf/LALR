@@ -6,7 +6,9 @@ public class Declaration extends NonTerminal {
 	}
 
 	public void interpret() throws Exception {
+		printBranch();
 		NonTerminal type = (NonTerminal)getComponent("type");
+		propagate(type);
 		type.interpret();
 		put("vartype",type.getAsString("type"));
 		put("lineNo",type.getAsInt("lineNo"));
@@ -16,6 +18,7 @@ public class Declaration extends NonTerminal {
 		}
 
 		NonTerminal varlist = (NonTerminal)getComponent("var_list");
+		propagate(varlist);
 		varlist.interpret();
 		this.varlist = (ParseObject[])varlist.getAsArray("vars");
 	}

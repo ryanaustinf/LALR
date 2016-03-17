@@ -6,16 +6,21 @@ public class CodeBody extends NonTerminal {
 	}
 
 	public void interpret() throws Exception {
+		printBranch();
 		ArrayList<CodeLine> codes = new ArrayList<CodeLine>();
 		switch(getProdString()) {
 			case "safe_code_line":
 				CodeLine cl = (CodeLine)getComponent("safe_code_line");
+				propagate(cl);
 				cl.interpret();
 				codes.add(cl);
 				break;
 			case "{ code }":
+				printIndent("{");
 				Code c = (Code)getComponent("code");
+				propagate(c);
 				c.interpret();
+				printIndent("}");
 				CodeLine[] codeList = (CodeLine[])c.getAsArray("lines");
 				for( CodeLine line: codeList ) {
 					codes.add(line);

@@ -13,33 +13,44 @@ public class Expr2 extends NonTerminal {
 	}
 
 	public void interpret() throws Exception {
+		printBranch();
 		switch(getProdString()) {
 			case "expr2 * expr3":
 				nt1 = (NonTerminal)getComponent("expr2");
+				propagate(nt1);
 				nt1.interpret();
+				printIndent("*");
 				nt2 = (NonTerminal)getComponent("expr3");
+				propagate(nt2);
 				nt2.interpret();
 				operation = "*";
 				put("lineNo",nt1.getAsInt("lineNo"));
 				break;
 			case "expr2 / expr3":
 				nt1 = (NonTerminal)getComponent("expr2");
+				propagate(nt1);
 				nt1.interpret();
+				printIndent("/");
 				nt2 = (NonTerminal)getComponent("expr3");
+				propagate(nt2);
 				nt2.interpret();
 				operation = "/";
 				put("lineNo",nt1.getAsInt("lineNo"));
 				break;
 			case "expr2 % expr3":
 				nt1 = (NonTerminal)getComponent("expr2");
+				propagate(nt1);
 				nt1.interpret();
+				printIndent("%");
 				nt2 = (NonTerminal)getComponent("expr3");
+				propagate(nt2);
 				nt2.interpret();
 				operation = "%";
 				put("lineNo",nt1.getAsInt("lineNo"));
 				break;
 			case "expr3":
 				nt1 = (NonTerminal)getComponent("expr3");
+				propagate(nt1);
 				nt1.interpret();
 				operation = "";
 				put("lineNo",nt1.getAsInt("lineNo"));

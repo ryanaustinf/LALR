@@ -11,10 +11,18 @@ public class UnlessStmt extends NonTerminal {
 	}
 
 	public void interpret() throws Exception {
+		printBranch();
+		printIndent("dontevenblink");
+		printIndent("(");
+
 		switch(getProdString()) {
 			case "dontevenblink ( cond ) code_body":
-				getComponent("cond").interpret();
-				NonTerminal nt = (NonTerminal)getComponent("code_body");
+				NonTerminal nt = (NonTerminal)getComponent("cond");
+				propagate(nt);
+				nt.interpret();
+				printIndent(")");
+				nt = (NonTerminal)getComponent("code_body");
+				propagate(nt);
 				nt.interpret();
 				CodeLine[] cl = (CodeLine[])nt.getAsArray("lines");
 				for(CodeLine line : cl) {
@@ -22,35 +30,57 @@ public class UnlessStmt extends NonTerminal {
 				}
 				break;
 			case "dontevenblink ( cond ) code_body blinkandyouredead code_line":
-				getComponent("cond").interpret();
-				nt = (NonTerminal)getComponent("code_body");
+				nt = (NonTerminal)getComponent("cond");
+				propagate(nt);
 				nt.interpret();
+				printIndent(")");
+				nt = (NonTerminal)getComponent("code_body");
+				propagate(nt);
+				nt.interpret();
+				printIndent("blinkandyouredead");
 				cl = (CodeLine[])nt.getAsArray("lines");
 				for(CodeLine line : cl) {
 					codes.add(line);
 				}
-				getComponent("code_line").interpret();
+				NonTerminal nt2 = (NonTerminal)getComponent("code_line");
+				propagate(nt2);
+				nt2.interpret();
 				codes2.add((CodeLine)getComponent("code_line"));
 				break;
 			case "dontevenblink ( cond ) code_body blinkandyouredead { code }":
-				getComponent("cond").interpret();
+				nt = (NonTerminal)getComponent("cond");
+				propagate(nt);
+				nt.interpret();
+				printIndent(")");
 				nt = (NonTerminal)getComponent("code_body");
+				propagate(nt);
 				nt.interpret();
 				cl = (CodeLine[])nt.getAsArray("lines");
 				for(CodeLine line : cl) {
 					codes.add(line);
 				}
+				printIndent("blinkandyouredead");
+				printIndent("{");
 				nt = (NonTerminal)getComponent("code");
+				propagate(nt);
 				nt.interpret();
+				printIndent("}");
 				cl = (CodeLine[])nt.getAsArray("lines");
 				for(CodeLine line : cl) {
 					codes2.add(line);
 				}
 				break;
 			case "dontevenblink ( cond ) code_body blinkandyouredead { }":
-				getComponent("cond").interpret();
-				nt = (NonTerminal)getComponent("code_body");
+				nt = (NonTerminal)getComponent("cond");
+				propagate(nt);
 				nt.interpret();
+				printIndent(")");
+				nt = (NonTerminal)getComponent("code_body");
+				propagate(nt);
+				nt.interpret();
+				printIndent("blinkandyouredead");
+				printIndent("{");
+				printIndent("}");
 				cl = (CodeLine[])nt.getAsArray("lines");
 				for(CodeLine line : cl) {
 					codes.add(line);

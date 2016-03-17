@@ -6,16 +6,21 @@ public class SafeCodeLine extends NonTerminal {
 	}
 
 	public void interpret() throws Exception {
+		if(Driver.SHOW_TREE) {
+			printBranch();
+		}
 		switch(getProdString()) {
 			case "declaration ;":
 				put("type","declaration");
 				code = (NonTerminal)getComponent("declaration");
+				propagate(code);
 				code.interpret();
 				put("lineNo",code.getAsInt("lineNo"));
 				break;
 			case "assignment ;":
 				put("type","assignment");
 				code = (NonTerminal)getComponent("assignment");
+				propagate(code);
 				code.interpret();
 				put("lineNo",code.getAsInt("lineNo"));
 				break;
@@ -24,10 +29,14 @@ public class SafeCodeLine extends NonTerminal {
 				//TODO
 				break;
 			case "DELETE ;":
+				printIndent("DELETE");
+				printIndent(";");
 				put("type","break");
 				put("lineNo",((Token)getComponent("DELETE")).lineNo());
 				break;
 			case "REGENERATE ;":
+				printIndent("REGENERATE");
+				printIndent(";");
 				put("type","continue");
 				put("lineNo",((Token)getComponent("REGENERATE")).lineNo());
 				break;
@@ -38,6 +47,7 @@ public class SafeCodeLine extends NonTerminal {
 			case "print_stmt ;":
 				put("type","print");
 				code = (NonTerminal)getComponent("print_stmt");
+				propagate(code);
 				code.interpret();
 				put("lineNo",code.getAsInt("lineNo"));
 				break;

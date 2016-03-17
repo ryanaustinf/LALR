@@ -7,23 +7,74 @@ public class Cond4 extends NonTerminal {
 	}
 
 	public void interpret() throws Exception {
+		printBranch();
 		switch(getProdString()) {
 			case "expr <= expr":
+				nt1 = (NonTerminal)getComponent("expr");
+				propagate(nt1);
+				nt1.interpret();
+				printIndent("<=");
+				nt2 = (NonTerminal)getComponent("expr",1);
+				propagate(nt2);
+				nt2.interpret();
+				put("lineNo",nt1.getAsInt("lineNo"));
+				break;
 			case "expr >= expr":
+				nt1 = (NonTerminal)getComponent("expr");
+				propagate(nt1);
+				nt1.interpret();
+				printIndent(">=");
+				nt2 = (NonTerminal)getComponent("expr",1);
+				propagate(nt2);
+				nt2.interpret();
+				put("lineNo",nt1.getAsInt("lineNo"));
+				break;
 			case "expr < expr":
+				nt1 = (NonTerminal)getComponent("expr");
+				propagate(nt1);
+				nt1.interpret();
+				printIndent("<");
+				nt2 = (NonTerminal)getComponent("expr",1);
+				propagate(nt2);
+				nt2.interpret();
+				put("lineNo",nt1.getAsInt("lineNo"));
+				break;
 			case "expr > expr":
+				nt1 = (NonTerminal)getComponent("expr");
+				propagate(nt1);
+				nt1.interpret();
+				printIndent(">");
+				nt2 = (NonTerminal)getComponent("expr",1);
+				propagate(nt2);
+				nt2.interpret();
+				put("lineNo",nt1.getAsInt("lineNo"));
+				break;
 			case "expr == expr":
+				nt1 = (NonTerminal)getComponent("expr");
+				propagate(nt1);
+				nt1.interpret();
+				printIndent("==");
+				nt2 = (NonTerminal)getComponent("expr",1);
+				propagate(nt2);
+				nt2.interpret();
+				put("lineNo",nt1.getAsInt("lineNo"));
+				break;
 			case "expr != expr":
 				nt1 = (NonTerminal)getComponent("expr");
+				propagate(nt1);
 				nt1.interpret();
+				printIndent("!=");
 				nt2 = (NonTerminal)getComponent("expr",1);
+				propagate(nt2);
 				nt2.interpret();
 				put("lineNo",nt1.getAsInt("lineNo"));
 				break;
 			case "varname":
+				printIndent(((Token)getComponent("varname")).token());
 				break;
 			case "expr":
 				nt1 = (NonTerminal)getComponent("expr");
+				propagate(nt1);
 				nt1.interpret();
 				put("lineNo",nt1.getAsInt("lineNo"));
 				break;

@@ -12,16 +12,19 @@ public class Value extends NonTerminal {
 	}
 
 	public void interpret() {
+		printBranch();
 		switch(getProdString()) {
 			case "int":
 				put("type","int");
 				token = (Token)getComponent("int");
+				printIndent(token.token());
 				put("value",Integer.parseInt(token.token()));
 				thisString = "" + getAsInt("value");
 				break;
 			case "float":
 				put("type","float");
 				token = (Token)getComponent("float");
+				printIndent(token.token());
 				put("value",Double.parseDouble(token.token()));
 				thisString = "" + getAsDouble("value");
 				break;
@@ -29,6 +32,7 @@ public class Value extends NonTerminal {
 				put("type","char");
 				token = (Token)getComponent("char");
 				String str = token.token();
+				printIndent(token.token());
 				str = str.substring(1,str.length() - 1)
 						.replaceAll("\\\\n","\n")
 						.replaceAll("\\\\t","\t")
@@ -43,11 +47,13 @@ public class Value extends NonTerminal {
 				break;
 			case "array":
 				put("type","array");
+				//TODO
 				break;
 			case "string":
 				put("type","string");
 				token = (Token)getComponent("string");
 				str = token.token();
+				printIndent(token.token());
 				str = str.substring(1,str.length() - 1)
 						.replaceAll("\\\\n","\n")
 						.replaceAll("\\\\t","\t")
@@ -61,6 +67,7 @@ public class Value extends NonTerminal {
 				break;
 			case "bool_value":
 				token = (Token)getComponent("bool_value");
+				printIndent(((Token)getComponent("bool_value")).token().equals("true") + "");
 				put("type","boolean");
 				put("value",((Token)getComponent("bool_value")).token().equals("true"));			
 				break;

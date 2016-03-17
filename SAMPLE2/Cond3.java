@@ -6,14 +6,18 @@ public class Cond3 extends NonTerminal {
 	}
 
 	public void interpret() throws Exception {
+		printBranch();
 		switch(getProdString()) {
 			case "! cond3":
+				printIndent("!");
 				nt1 = (NonTerminal)getComponent("cond3");
+				propagate(nt1);
 				nt1.interpret();
 				put("lineNo",nt1.getAsInt("lineNo"));
 				break;
 			case "cond4":
 				nt1 = (NonTerminal)getComponent("cond4");
+				propagate(nt1);
 				nt1.interpret();
 				put("lineNo",nt1.getAsInt("lineNo"));
 				break;

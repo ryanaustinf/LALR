@@ -13,25 +13,33 @@ public class Expr extends NonTerminal {
 	}
 
 	public void interpret() throws Exception {
+		printBranch();
 		switch(getProdString()) {
 			case "expr + expr2":
 				nt1 = (NonTerminal)getComponent("expr");
+				propagate(nt1);
 				nt1.interpret();
+				printIndent("+");
 				nt2 = (NonTerminal)getComponent("expr2");
+				propagate(nt2);
 				nt2.interpret();
 				operation = "+";
 				put("lineNo",nt1.getAsInt("lineNo"));
 				break;
 			case "expr - expr2":
 				nt1 = (NonTerminal)getComponent("expr");
+				propagate(nt1);
 				nt1.interpret();
+				printIndent("-");
 				nt2 = (NonTerminal)getComponent("expr2");
+				propagate(nt2);
 				nt2.interpret();
 				operation = "-";
 				put("lineNo",nt1.getAsInt("lineNo"));
 				break;
 			case "expr2":
 				nt1 = (NonTerminal)getComponent("expr2");
+				propagate(nt1);
 				nt1.interpret();
 				operation = "";
 				put("lineNo",nt1.getAsInt("lineNo"));
@@ -107,8 +115,8 @@ public class Expr extends NonTerminal {
 								put("value",nt1.getAsString("value").charAt(0) + nt2.getAsInt("value"));
 								break;
 							case "char":
-								put("type","int");
-								put("value",nt1.getAsString("value").charAt(0) + nt2.getAsString("value").charAt(0));
+								put("type","char");
+								put("value","" + (char)(nt1.getAsString("value").charAt(0) + nt2.getAsString("value").charAt(0)));
 								break;
 							case "string":
 								put("type","string");
@@ -146,6 +154,7 @@ public class Expr extends NonTerminal {
 								break;
 							case "string":
 								obs.add(nt2.getAsString("value"));
+								break;
 							default:
 								error = true;
 						}

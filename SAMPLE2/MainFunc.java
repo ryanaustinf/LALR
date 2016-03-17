@@ -6,8 +6,15 @@ public class MainFunc extends NonTerminal {
 	}
 
 	public void interpret() throws Exception {
+		printBranch();
+		printIndent("TARDIS");
+		printIndent("(");
+		printIndent(")");
+		printIndent("{");
 		code = (Code)getComponent("code");
+		propagate(code);
 		code.interpret();
+		printIndent("}");
 	}
 
 	public void execute() {

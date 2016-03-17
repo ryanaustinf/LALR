@@ -10,19 +10,25 @@ public class Expr4 extends NonTerminal {
 	}
 
 	public void interpret() throws Exception {
+		printBranch();
 		switch(getProdString()) {
 			case "+ expr4":
+				printIndent("+");
 				nt1 = (NonTerminal)getComponent("expr4");
+				propagate(nt1);
 				nt1.interpret();
 				put("lineNo",nt1.getAsInt("lineNo"));
 				break;
 			case "- expr4":
+				printIndent("-");
 				nt1 = (NonTerminal)getComponent("expr4");
+				propagate(nt1);
 				nt1.interpret();
 				put("lineNo",nt1.getAsInt("lineNo"));
 				break;
 			case "expr5":
 				nt1 = (NonTerminal)getComponent("expr5");
+				propagate(nt1);
 				nt1.interpret();
 				put("lineNo",nt1.getAsInt("lineNo"));
 				break;

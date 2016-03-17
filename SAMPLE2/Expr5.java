@@ -15,21 +15,29 @@ public class Expr5 extends NonTerminal {
 	public void interpret() throws Exception {
 		switch(getProdString()) {
 			case "( assignment )":
+				printIndent("(");
 				nt1 = (NonTerminal)getComponent("assignment");
+				propagate(nt1);
 				nt1.interpret();
+				printIndent(")");
 				put("lineNo", nt1.getAsInt("lineNo"));
 				break;
 			case "( cond )":
+				printIndent("(");
 				nt1 = (NonTerminal)getComponent("cond");
+				propagate(nt1);
 				nt1.interpret();
+				printIndent(")");
 				put("lineNo", nt1.getAsInt("lineNo"));
 				break;
 			case "value":
 				nt1 = (NonTerminal)getComponent("value");
+				propagate(nt1);
 				nt1.interpret();
 				put("lineNo", nt1.getAsInt("lineNo"));
 				break;
 			case "varname":
+				printIndent(((Token)getComponent("varname")).token());
 				put("varname",((Token)getComponent("varname")).token());
 				put("lineNo",((Token)getComponent("varname")).lineNo());
 				break;

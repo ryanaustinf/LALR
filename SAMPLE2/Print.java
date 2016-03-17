@@ -6,10 +6,27 @@ public class Print extends NonTerminal {
 	}
 
 	public void interpret() throws Exception {
+		printBranch();
+		switch(getProdString()) {
+			case "demat ( cond )":
+			case "demat ( assignment )":
+			case "demat ( func_call )":
+				printIndent("demat");
+				printIndent("(");
+				break;		
+			case "demater ( cond )":
+			case "demater ( func_call )":
+			case "demater ( assignment )":
+				printIndent("demater");
+				printIndent("(");
+				break;
+			default:
+		}	
 		switch(getProdString()) {
 			case "demat ( cond )":
 			case "demater ( cond )":
 				nt = (NonTerminal)getComponent("cond");
+				propagate(nt);
 				nt.interpret();
 				put("lineNo",nt.getAsInt("lineNo"));
 				break;
@@ -20,6 +37,7 @@ public class Print extends NonTerminal {
 			case "demat ( assignment )":
 			case "demater ( assignment )":
 				nt = (NonTerminal)getComponent("assignment");
+				propagate(nt);
 				nt.interpret();
 				put("lineNo",nt.getAsInt("lineNo"));
 				break;

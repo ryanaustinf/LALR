@@ -7,16 +7,21 @@ public class Cond2 extends NonTerminal {
 	}
 
 	public void interpret() throws Exception {
+		printBranch();
 		switch(getProdString()) {
 			case "cond2 && cond3":
 				nt1 = (NonTerminal)getComponent("cond2");
+				propagate(nt1);
 				nt1.interpret();
+				printIndent("&&");
 				nt2 = (NonTerminal)getComponent("cond3");
+				propagate(nt2);
 				nt2.interpret();
 				put("lineNo",nt1.getAsInt("lineNo"));
 				break;
 			case "cond3":
 				nt1 = (NonTerminal)getComponent("cond3");
+				propagate(nt1);
 				nt1.interpret();
 				put("lineNo",nt1.getAsInt("lineNo"));
 				break;
