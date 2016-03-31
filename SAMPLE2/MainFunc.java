@@ -18,7 +18,9 @@ public class MainFunc extends NonTerminal {
 	}
 
 	public void execute() {
-		SymbolTable.instance().pushContext();
+		SymbolTable st = SymbolTable.instance();
+		st.pushFrame("MAIN");
+		st.pushContext();
 		CodeLine[] codes = (CodeLine[])code.getAsArray("lines");
 		boolean fail = false;
 		for(CodeLine cl: codes) {

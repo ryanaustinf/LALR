@@ -34,10 +34,14 @@ public class Declaration extends NonTerminal {
 										+ " already declared at line " 
 										+ t.lineNo());
 				}
+				// System.out.println(st.callStack());
+				// System.out.println(st.symbolTable());
 			} else {
 				NonTerminal nt = (NonTerminal)var;
 				nt.put("vartype",getAsString("vartype"));
 				nt.execute();
+				// System.out.println(st.callStack());
+				// System.out.println(st.symbolTable());
 			}
 		}
 	}
