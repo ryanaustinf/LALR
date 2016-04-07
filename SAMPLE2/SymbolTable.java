@@ -27,7 +27,7 @@ public class SymbolTable {
 		ArrayList<String> varnames = new ArrayList<String>();
 		ArrayList<HashMap<String,Variable>> map = getMap();
 		for(HashMap<String,Variable> context : map ) {
-			String[] decs = context.keySet.toArray(new String[0]);
+			String[] decs = context.keySet().toArray(new String[0]);
 			for(String s : decs) {
 				varnames.add(s);
 			}
