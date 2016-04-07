@@ -23,6 +23,18 @@ public class SymbolTable {
 		return stack.peek();
 	}
 
+	public boolean isDeclared(String varname) {
+		ArrayList<String> varnames = new ArrayList<String>();
+		ArrayList<HashMap<String,Variable>> map = getMap();
+		for(HashMap<String,Variable> context : map ) {
+			String[] decs = context.keySet.toArray(new String[0]);
+			for(String s : decs) {
+				varnames.add(s);
+			}
+		}
+		return varnames.indexOf(varname) != -1;
+	}
+
 	public void pushContext() {
 		ArrayList<HashMap<String,Variable>> map = getMap();
 		map.add(0,new HashMap<String,Variable>());

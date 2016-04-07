@@ -155,6 +155,19 @@ public class Variable {
 	}
 
 	public String toString() {
-		return type + " - " + value.toString();
+		String ret = type + " - ";
+		if( type.equals("array")) {
+			Object[] objs = getAsArray();
+			for(int i = 0; i < objs.length; i++ ) {
+				if( i > 0 ) {
+					ret += ",";
+				}
+				ret += objs[i].toString();
+			}
+		} else {
+			ret += value.toString();
+		}
+
+		return ret;
 	}
 }
