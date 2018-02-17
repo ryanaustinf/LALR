@@ -46,6 +46,9 @@ public class ConcreteTokenizer implements Tokenizer {
 						state = 1;
 						currToken += c;
 					} else if(c == '\t' || c == ' ') {
+						if(!currToken.equals("")) {
+							addToken();
+						}
 						continue;
 					} else if(c >= 'A' && c <= 'Z'  || c >= 'a' && c <= 'z') {
 						state = 4;
@@ -70,6 +73,10 @@ public class ConcreteTokenizer implements Tokenizer {
 								currToken += c;
 								break;
 							}
+						}
+
+						if(state == 0) {
+							currToken += c;
 						}
 					}
 					break;
